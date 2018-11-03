@@ -1,7 +1,8 @@
-module.exports = (directoryPath, meta) => `
-<title>${meta.title ? `${meta.title} — ` : ''}${
-  /^\.\/ru($|\/)/.test(directoryPath)
-    ? 'Up to Coaching с Ксенией Романовой'
-    : 'Up to Coaching with Ksenia Romanova'
-}</title>
+module.exports = (directoryPath, meta) => {
+  const russian = /^\.\/ru($|\/)/.test(directoryPath);
+  return `
+<title>${meta.title ? `${meta.title} — ` : ''}Up to Coaching ${
+    russian ? 'с Ксенией Романовой' : 'with Ksenia Romanova'
+  }</title>
 `;
+};
