@@ -7,7 +7,7 @@ const { spawnSync } = require('child_process');
   ? process.argv.slice(2)
   : spawnSync(
       'find',
-      ['-type', 'd', '!', '-regex', String.raw`\./includes\(\|/.*\)`],
+      ['-type', 'd', '!', '-regex', String.raw`\./lib\(\|/.*\)`],
       { encoding: 'utf8' },
     )
       .stdout.split('\n')
@@ -15,7 +15,7 @@ const { spawnSync } = require('child_process');
 ).forEach(directoryPath => {
   const html = require([
     path.join(directoryPath, 'index.js'),
-    './includes/index.js',
+    './lib/index.js',
   ].find(modulePath => fs.existsSync(modulePath)))(directoryPath);
   if (html !== undefined) {
     fs.writeFileSync(path.join(directoryPath, 'index.html'), html);
