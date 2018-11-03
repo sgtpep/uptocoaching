@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+const fs = require('fs');
+const path = require('path');
+const { spawnSync } = require('child_process');
+
+const buildPage = directoryPath => {
+  const html = generateHTML(directoryPath);
+  if (html !== undefined) {
+    fs.writeFileSync(path.join(directoryPath, 'index.html'), html);
+  }
+};
+
+const generateHTML = directoryPath =>
+  require([path.join(directoryPath, 'index.js'), './includes/index.js'].find(
+    modulePath => fs.existsSync(modulePath),
+  ))(directoryPath);
+
+const main = () =>
+  pageDirectories().forEach(directoryPath => buildPage(directoryPath));
+
+const pageDirectories = () =>
+  process.argv.length > 2
+    ? process.argv.slice(2)
+    : spawnSync(
+        'find',
+        ['-type', 'd', '!', '-regex', String.raw`\./includes\(\|/.*\)`],
+        { encoding: 'utf8' },
+      )
+        .stdout.split('\n')
+        .slice(0, -1);
+
+main();
