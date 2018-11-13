@@ -1,5 +1,37 @@
-
-
-styles
+header
+  logo
+  menu
+  langs
+  ru
+footer
+  copyright
+  ru
+chat
+  icon
+  form
+  submit
+  ru
+contacts
+  form
+  submit
+  ru
+last photo
+first block
+  ru
+about
+  ru
+listen
+  ru
+education
+  ru
+themes
+  ru
+reviews
+  ru
+full reviews
+  header
+  reviews
+  ru
 deploy
+  exclude lib, body.html, meta.json, executables, todo
 close tilda
