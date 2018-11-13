@@ -31,6 +31,8 @@ full reviews
   header
   reviews
   ru
+purgecss
+embed css, js, images
 deploy
   exclude lib, body.html, meta.json, executables, todo
 close tilda
