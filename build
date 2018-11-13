@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
-const { spawnSync } = require('child_process');
+const child_process = require('child_process');
 
 (process.argv.length > 2
   ? process.argv.slice(2)
-  : spawnSync(
-      'find',
-      ['-type', 'd', '!', '-regex', String.raw`\./lib\(\|/.*\)`],
-      { encoding: 'utf8' },
-    )
+  : child_process
+      .spawnSync(
+        'find',
+        ['-type', 'd', '!', '-regex', String.raw`\./lib\(\|/.*\)`],
+        { encoding: 'utf8' },
+      )
       .stdout.split('\n')
       .slice(0, -1)
 ).forEach(directoryPath => {
