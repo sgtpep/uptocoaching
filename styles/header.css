@@ -1,0 +1,55 @@
+.header {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+  height: 65px;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+}
+.header > * {
+  vertical-align: middle;
+}
+
+.header-logo {
+  display: inline-block;
+  height: 100%;
+  padding: 2px;
+}
+.header-logo > img {
+  height: inherit;
+}
+
+.header-menu {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 600;
+}
+.header-menu > li {
+  display: inline;
+}
+.header-menu > li > a {
+  color: black;
+  position: relative;
+}
+.header-menu > li > a:after {
+  bottom: 20%;
+  box-shadow: inset 0px -2px 0px 0px;
+  content: '';
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  transition: all 0.3s;
+  width: 100%;
+}
+.header-menu > li > a:hover,
+.header-menu:not(.header-languages) > li > a.active {
+  color: #6ea023;
+}
+.header-menu > li > a.active:after,
+.header-menu > li > a:hover:after {
+  bottom: -1px;
+  opacity: 1;
+}
