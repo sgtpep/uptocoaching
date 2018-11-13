@@ -13,12 +13,12 @@ const child_process = require('child_process');
       )
       .stdout.split('\n')
       .slice(0, -1)
-).forEach(directoryPath => {
+).forEach(directory => {
   const html = require([
-    path.join(directoryPath, 'index.js'),
+    path.join(directory, 'index.js'),
     './lib/index.js',
-  ].find(modulePath => fs.existsSync(modulePath)))(directoryPath);
+  ].find(modulePath => fs.existsSync(modulePath)))(directory);
   if (html !== undefined) {
-    fs.writeFileSync(path.join(directoryPath, 'index.html'), html);
+    fs.writeFileSync(path.join(directory, 'index.html'), html);
   }
 });
