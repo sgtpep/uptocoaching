@@ -8,6 +8,7 @@ chat
   submit
   ru
 contacts
+  activate menu item
   form
   submit
   ru
@@ -15,6 +16,7 @@ last photo
 first block
   ru
 about
+  activate menu item
   ru
 listen
   ru
@@ -28,8 +30,14 @@ full reviews
   header
   reviews
   ru
-purgecss
-embed css, js, images
+https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700&subset=latin,cyrillic
+postprocessing
+  postcss
+  combine css
+  purgecss
+  embed css, js, images
 deploy
+  yarn install
   exclude lib, body.html, meta.json, executables, todo
+  travis
 close tilda
