@@ -22,6 +22,7 @@ const child_process = require('child_process');
 ).forEach(directory => {
   const html = require([
     path.join(directory, 'index.js'),
+    path.join(directory.replace(/^\.\/ru($|\/)/, ''), 'index.js'),
     './lib/index.js',
   ].find(modulePath => fs.existsSync(modulePath)))(directory);
   if (html !== undefined) {
