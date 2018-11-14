@@ -1,0 +1,4 @@
+.cover {
+  background: black center / cover no-repeat fixed;
+  height: 100vh;
+}
