@@ -10,7 +10,7 @@ const onScroll = () =>
         parallax.offsetTop +
         (innerHeight - parallax.offsetHeight) / 2) /
         (innerHeight + parallax.offsetHeight)) *
-        100 +
+        150 +
       '%';
   });
 addEventListener('scroll', () => onScroll());
