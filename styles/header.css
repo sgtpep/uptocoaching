@@ -12,10 +12,19 @@
   vertical-align: middle;
 }
 
+.header-languages {
+  margin-top: -0.75em;
+  position: absolute;
+  right: 40px;
+  top: 50%;
+}
+
 .header-logo {
-  display: inline-block;
   height: 100%;
+  left: 40px;
   padding: 2px;
+  position: absolute;
+  top: 0;
 }
 .header-logo > img {
   height: inherit;
@@ -28,6 +37,14 @@
 }
 .header-menu > li {
   display: inline;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.header-menu > li:first-child {
+  padding-left: 0;
+}
+.header-menu > li:last-child {
+  padding-right: 0;
 }
 .header-menu > li > a {
   color: black;
@@ -52,4 +69,14 @@
 .header-menu > li > a:hover:after {
   bottom: -1px;
   opacity: 1;
+}
+
+.header-navigation {
+  left: 0;
+  margin-top: -0.75em;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 50%;
+  z-index: -1;
 }
