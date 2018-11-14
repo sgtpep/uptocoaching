@@ -1,15 +1,4 @@
-chat
-  icon
-  form
-  submit
-  ru
-  responsive
-contacts
-  activate menu item
-  form
-  submit
-  ru
-  responsive
+top padding
 last photo
   responsive
 first block
@@ -34,6 +23,18 @@ reviews
 full reviews
   header
   reviews
+  ru
+  responsive
+chat
+  icon
+  form
+  submit
+  ru
+  responsive
+contacts
+  activate menu item
+  form
+  submit
   ru
   responsive
 font https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700&subset=latin,cyrillic
