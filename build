@@ -8,7 +8,13 @@ const child_process = require('child_process');
   : child_process
       .spawnSync(
         'find',
-        ['-type', 'd', '!', '-regex', String.raw`\./lib\(\|/.*\)`],
+        [
+          '-type',
+          'd',
+          '!',
+          '-regex',
+          String.raw`\./\(\..+\|lib\|node_modules\)\(\|/.+\)`,
+        ],
         { encoding: 'utf8' },
       )
       .stdout.split('\n')
