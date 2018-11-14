@@ -40,8 +40,9 @@ postprocessing
   combine css
   purgecss
   embed css, js, images
+  combine js
 deploy
   yarn install
-  exclude .*, lib, node_modules, body.html, meta.json, executables, todo
+  exclude .*, lib, node_modules, body.html, meta.json, executables, todo, scripts, styles
   travis
 close tilda
