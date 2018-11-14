@@ -1,4 +1,5 @@
 last photo
+  parallax
   responsive
 first block
   ru
@@ -44,6 +45,6 @@ postprocessing
   embed css, js, images
 deploy
   yarn install
-  exclude lib, body.html, meta.json, executables, todo
+  exclude .*, lib, node_modules, body.html, meta.json, executables, todo
   travis
 close tilda
