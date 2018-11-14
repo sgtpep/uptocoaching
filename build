@@ -13,7 +13,7 @@ const child_process = require('child_process');
           'd',
           '!',
           '-regex',
-          String.raw`\./\(\..+\|lib\|node_modules\)\(\|/.+\)`,
+          String.raw`\./\(\..+\|lib\|node_modules\|scripts\)\(\|/.+\)`,
         ],
         { encoding: 'utf8' },
       )
