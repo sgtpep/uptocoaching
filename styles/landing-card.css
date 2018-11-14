@@ -1,0 +1,28 @@
+.landing-card::after {
+  clear: both;
+  content: '';
+  display: block;
+}
+
+.landing-card > img:first-child {
+  width: 100%;
+}
+@media (min-width: 980px) {
+  .landing-card > img:first-child {
+    float: left;
+    width: 50%;
+  }
+  .landing-card.right > img:first-child {
+    float: right;
+  }
+}
+
+.landing-card > div:last-child {
+  padding: 60px;
+}
+@media (min-width: 980px) {
+  .landing-card > div:last-child {
+    float: left;
+    width: 50%;
+  }
+}
