@@ -1,11 +1,4 @@
 @import '../node_modules/bulma/css/bulma.css';
+@import 'anchor.css';
 @import 'footer.css';
 @import 'header.css';
-
-a,
-a:hover {
-  color: #6ea023;
-}
-a:hover {
-  border-bottom: 1px solid;
-}
