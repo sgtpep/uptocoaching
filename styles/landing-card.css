@@ -1,28 +1,61 @@
-.landing-card::after {
-  clear: both;
-  content: '';
-  display: block;
-}
-
-.landing-card > img:first-child {
-  width: 100%;
+.landing-card {
+  position: relative;
 }
 @media (min-width: 980px) {
-  .landing-card > img:first-child {
-    float: left;
-    width: 50%;
-  }
-  .landing-card.right > img:first-child {
-    float: right;
+  .landing-card {
+    font-size: 20px;
   }
 }
 
-.landing-card > div:last-child {
-  padding: 60px;
+.landing-card > div:empty {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 100%;
 }
 @media (min-width: 980px) {
-  .landing-card > div:last-child {
-    float: left;
+  .landing-card > div:empty {
+    bottom: 0;
+    padding-top: 0;
+    position: absolute;
+    top: 0;
     width: 50%;
   }
+  .landing-card:not(.right) > div:empty {
+    left: 0;
+  }
+  .landing-card.right > div:empty {
+    right: 0;
+  }
+}
+
+.landing-card > div:not(:empty) {
+  padding: 30px;
+}
+@media (min-width: 980px) {
+  .landing-card > div:not(:empty) {
+    padding: 65px;
+    width: 50%;
+  }
+  .landing-card:not(.right) > div:not(:empty) {
+    margin-left: 50%;
+  }
+  .landing-card.right > div:not(:empty) {
+    margin-right: 50%;
+  }
+}
+
+.landing-card h2 {
+  color: black;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.landing-card header {
+  color: #666;
+}
+
+.landing-card p {
+  margin-bottom: 1.2em;
+  margin-top: 1.2em;
 }
