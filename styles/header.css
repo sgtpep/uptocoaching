@@ -78,7 +78,7 @@
   color: black;
   position: relative;
 }
-.header-menu > li > a:after {
+.header-menu > li > a::after {
   bottom: 20%;
   box-shadow: inset 0px -2px 0px 0px;
   content: '';
@@ -93,8 +93,8 @@
 .header-menu:not(.header-languages) > li > a.active {
   color: #6ea023;
 }
-.header-menu > li > a.active:after,
-.header-menu > li > a:hover:after {
+.header-menu > li > a.active::after,
+.header-menu > li > a:hover::after {
   bottom: -1px;
   opacity: 1;
 }
