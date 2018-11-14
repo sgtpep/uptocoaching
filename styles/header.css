@@ -65,19 +65,17 @@
 .header-menu {
   display: inline-block;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 .header-menu > li {
   display: inline;
+}
+.header-menu > li:not(:first-child) {
   padding-left: 12px;
+}
+.header-menu > li:not(:last-child) {
   padding-right: 12px;
-}
-.header-menu > li:first-child {
-  padding-left: 0;
-}
-.header-menu > li:last-child {
-  padding-right: 0;
 }
 
 .header-menu > li > a {
