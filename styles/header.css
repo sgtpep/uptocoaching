@@ -18,6 +18,9 @@
     z-index: 1000;
   }
 }
+.header a:hover {
+  border-bottom: none;
+}
 
 .header-languages {
   position: absolute;
