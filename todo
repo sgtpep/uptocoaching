@@ -1,36 +1,46 @@
-header
 footer
   copyright
   ru
+  responsive
 chat
   icon
   form
   submit
   ru
+  responsive
 contacts
   activate menu item
   form
   submit
   ru
+  responsive
 last photo
+  responsive
 first block
   ru
+  responsive
 about
   activate menu item
   ru
+  responsive
 listen
   ru
+  responsive
 education
   ru
+  responsive
 themes
   ru
+  responsive
 reviews
   ru
+  responsive
 full reviews
   header
   reviews
   ru
-https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700&subset=latin,cyrillic
+  responsive
+font https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700&subset=latin,cyrillic
 postprocessing
   postcss
   combine css
