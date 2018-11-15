@@ -8,9 +8,7 @@
 }
 
 .landing-card > div:empty {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: center / cover no-repeat;
   padding-top: 100%;
 }
 @media (min-width: 980px) {

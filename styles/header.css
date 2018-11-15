@@ -39,10 +39,7 @@
 }
 
 .header-logo {
-  background-image: url('../assets/logo.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: url('../assets/logo.png') center / cover no-repeat;
   height: 61px;
   left: 20px;
   position: absolute;
