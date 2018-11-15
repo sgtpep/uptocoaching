@@ -1,0 +1,10 @@
+.landing-interview {
+  font-size: 20px;
+  padding: 45px 30px;
+  text-align: center;
+}
+
+.landing-interview audio {
+  height: 54px;
+  margin-top: 10px;
+}
