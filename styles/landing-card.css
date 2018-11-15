@@ -45,17 +45,6 @@
   }
 }
 
-.landing-card h2 {
-  color: black;
-  font-size: 40px;
-  font-weight: bold;
-}
-
 .landing-card header {
   color: #666;
-}
-
-.landing-card p {
-  margin-bottom: 1.2em;
-  margin-top: 1.2em;
 }
