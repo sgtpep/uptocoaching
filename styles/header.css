@@ -39,24 +39,23 @@
 }
 
 .header-logo {
-  background: url('../assets/logo.png') center / cover no-repeat;
+  background: url('../assets/logo.png') center / contain no-repeat;
   height: 61px;
   left: 20px;
   position: absolute;
   top: 2px;
-  width: 171px;
+  width: 172px;
 }
 @media (min-width: 480px) {
   .header-logo {
-    left: 0;
-    right: 0;
-    text-align: center;
+    left: 50%;
+    margin-left: -86px;
   }
 }
 @media (min-width: 768px) {
   .header-logo {
     left: 40px;
-    right: auto;
+    margin-left: 0;
   }
 }
 
@@ -107,6 +106,7 @@
 }
 
 .header-navigation {
+  margin-top: 100px;
   bottom: 15px;
   left: 0;
   position: absolute;
