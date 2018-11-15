@@ -1,14 +1,12 @@
 .review {
   font-size: 16px;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 @media (min-width: 640px) {
   .review {
     font-size: inherit;
   }
-}
-
-.review:not(:last-child) {
-  margin-bottom: 40px;
 }
 
 .review::after {
