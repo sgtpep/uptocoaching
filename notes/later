@@ -1,5 +1,4 @@
 font https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700&subset=latin,cyrillic
-scheduling
 postprocessing
   postcss
   combine css
@@ -11,3 +10,9 @@ deploy
   exclude .*, lib, node_modules, body.html, meta.json, executables, todo, scripts, styles, package.json, yarn.lock
   travis
 close tilda
+  check analytics
+tos
+  http://tilda.education/articles-personal-data-law
+  https://tilda.cc/ru/privacy-generator/
+analytics
+scheduling
