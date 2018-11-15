@@ -1,9 +1,10 @@
-reviews
-  button
+.container
+  .footer
+<base>
+
 full reviews
   header
-  reviews
-  ru
+    parallax
   responsive
 chat
   icon
