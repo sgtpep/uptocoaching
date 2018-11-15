@@ -43,10 +43,11 @@
   }
 }
 
-.landing-card h2 {
+.landing-card header > h2 {
   text-align: left;
 }
 
-.landing-card header {
+.landing-card header > p {
   color: #666;
+  margin-top: -35px;
 }
