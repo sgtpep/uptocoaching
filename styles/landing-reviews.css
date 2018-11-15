@@ -8,3 +8,19 @@
   margin-right: auto;
   max-width: 780px;
 }
+
+.landing-reviews > a {
+  background-color: #0a0a0a;
+  border-radius: 30px;
+  color: white;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 60px;
+  margin-left: 50%;
+  padding-left: 30px;
+  padding-right: 30px;
+  transform: translateX(-50%);
+}
+.landing-reviews > a:hover {
+  border-bottom: none;
+}
