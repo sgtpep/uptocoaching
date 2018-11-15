@@ -1,0 +1,81 @@
+.landing-themes {
+  padding: 30px;
+}
+
+.landing-themes > ul {
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 640px;
+}
+@media (min-width: 768px) {
+  .landing-themes > ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.landing-themes > ul > li {
+  margin-top: 10px;
+  padding-left: 65px;
+  padding-right: 10px;
+  position: relative;
+}
+@media (min-width: 768px) {
+  .landing-themes > ul > li {
+    flex: 50%;
+  }
+}
+.landing-themes > ul > li:not(:last-child) {
+  margin-bottom: 40px;
+}
+
+.landing-themes > ul > li::before {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: '';
+  display: block;
+  height: 45px;
+  left: 0;
+  margin-top: -0.4em;
+  position: absolute;
+  width: 45px;
+}
+
+.landing-themes-balance::before {
+  background-image: url('../assets/themes/balance.svg');
+}
+.landing-themes-career::before {
+  background-image: url('../assets/themes/career.svg');
+}
+.landing-themes-communication::before {
+  background-image: url('../assets/themes/communication.svg');
+}
+.landing-themes-goals::before {
+  background-image: url('../assets/themes/goals.svg');
+}
+.landing-themes-job::before {
+  background-image: url('../assets/themes/job.svg');
+}
+.landing-themes-new-parent::before {
+  background-image: url('../assets/themes/new-parent.svg');
+}
+.landing-themes-performance::before {
+  background-image: url('../assets/themes/performance.svg');
+}
+.landing-themes-priorities::before {
+  background-image: url('../assets/themes/priorities.svg');
+}
+.landing-themes-self-confidence::before {
+  background-image: url('../assets/themes/self-confidence.svg');
+}
+.landing-themes-stress::before {
+  background-image: url('../assets/themes/stress.svg');
+}
+.landing-themes-time::before {
+  background-image: url('../assets/themes/time.svg');
+}
+.landing-themes-working-parent::before {
+  background-image: url('../assets/themes/working-parent.svg');
+}
