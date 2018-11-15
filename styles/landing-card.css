@@ -43,6 +43,10 @@
   }
 }
 
+.landing-card h2 {
+  text-align: left;
+}
+
 .landing-card header {
   color: #666;
 }
