@@ -9,7 +9,7 @@ chat
   ru
   responsive
 contacts
-  activate menu item
+  <a id="contacts">
   form
   submit
   ru
