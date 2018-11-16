@@ -6,7 +6,7 @@ const headerHeight = document.querySelector('.header').offsetHeight;
 const onScroll = () => {
   const element = elements.find(
     element =>
-      pageYOffset >= element.offsetTop - headerHeight &&
+      pageYOffset >= element.offsetTop - headerHeight - 10 &&
       pageYOffset <= element.offsetTop,
   );
   Array.prototype.forEach.call(
