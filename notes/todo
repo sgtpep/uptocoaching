@@ -1,15 +1,18 @@
-full reviews
-  header
-    parallax
-  responsive
-chat
-  icon
+reviews header
+  background
+  title
+  subtitle
+  parallax
+  max-height: 100vh
+  arrow
+contacts
+  <a id="contacts">
   form
   submit
   ru
   responsive
-contacts
-  <a id="contacts">
+chat
+  icon
   form
   submit
   ru
