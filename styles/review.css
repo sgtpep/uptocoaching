@@ -80,18 +80,7 @@
   max-width: 780px;
 }
 
-.review-container > a {
-  background-color: #0a0a0a;
-  border-radius: 30px;
-  color: white;
-  display: inline-block;
-  font-weight: bold;
-  line-height: 60px;
+.review-container > .button {
   margin-left: 50%;
-  padding-left: 30px;
-  padding-right: 30px;
   transform: translateX(-50%);
-}
-.review-container > a:hover {
-  border-bottom: none;
 }
