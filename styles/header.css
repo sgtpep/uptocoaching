@@ -84,7 +84,7 @@
   position: relative;
 }
 .header-menu > li > a:hover,
-.header-menu:not(.header-languages) > li > a.active {
+.header-menu > li > a.active {
   color: #6ea023;
 }
 
@@ -99,7 +99,6 @@
   transition: all 0.3s;
   width: 100%;
 }
-.header-menu > li > a.active::after,
 .header-menu > li > a:hover::after {
   bottom: -1px;
   opacity: 1;
