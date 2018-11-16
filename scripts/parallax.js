@@ -1,17 +1,21 @@
-const parallaxes = document.querySelectorAll('.parallax');
-Array.prototype.forEach.call(parallaxes, parallax => {
-  parallax.style.backgroundAttachment = 'scroll';
-});
-const onScroll = () =>
-  Array.prototype.forEach.call(parallaxes, parallax => {
-    parallax.style.backgroundPositionY =
+const onScroll = elements => {
+  const bodyTop = document.body.getBoundingClientRect().top;
+  Array.prototype.forEach.call(elements, element => {
+    element.style.backgroundPositionY =
       50 -
       ((pageYOffset -
-        parallax.offsetTop +
-        (innerHeight - parallax.offsetHeight) / 2) /
-        (innerHeight + parallax.offsetHeight)) *
+        (element.getBoundingClientRect().top - bodyTop) +
+        (innerHeight - element.offsetHeight) / 2) /
+        (innerHeight + element.offsetHeight)) *
         150 +
       '%';
   });
-addEventListener('scroll', () => onScroll());
-onScroll();
+};
+
+export default elements => {
+  Array.prototype.forEach.call(elements, element => {
+    element.style.backgroundAttachment = 'scroll';
+  });
+  addEventListener('scroll', () => onScroll(elements));
+  onScroll(elements);
+};

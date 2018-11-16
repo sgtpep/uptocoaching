@@ -1,14 +1,9 @@
-const anchors = document.querySelectorAll('.header-navigation a[href*="#"]');
-const elements = Array.prototype.map
-  .call(anchors, anchor => document.querySelector(anchor.hash))
-  .filter(Boolean);
-const headerHeight = document.querySelector('.header').offsetHeight;
-const onScroll = () => {
-  const element = elements.find(
-    element =>
-      pageYOffset >= element.offsetTop - headerHeight - 10 &&
-      pageYOffset <= element.offsetTop,
-  );
+const onScroll = (anchors, header, elements) => {
+  const bodyTop = document.body.getBoundingClientRect().top;
+  const element = Array.prototype.find.call(elements, element => {
+    const top = element.getBoundingClientRect().top - bodyTop;
+    return pageYOffset >= top - header.offsetHeight - 10 && pageYOffset <= top;
+  });
   Array.prototype.forEach.call(
     anchors,
     anchor =>
@@ -17,5 +12,11 @@ const onScroll = () => {
         : anchor.classList.remove('active'),
   );
 };
-addEventListener('scroll', () => onScroll());
-onScroll();
+
+export default (anchors, header) => {
+  const elements = document.querySelectorAll(
+    Array.prototype.map.call(anchors, anchor => anchor.hash).join(', '),
+  );
+  addEventListener('scroll', () => onScroll(anchors, header, elements));
+  onScroll(anchors, header, elements);
+};

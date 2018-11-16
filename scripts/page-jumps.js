@@ -1,13 +1,20 @@
-const onHash = () => {
+const onHash = header => {
   if (location.hash) {
     const element = document.querySelector(location.hash);
     if (element) {
       scrollTo(
         0,
-        element.offsetTop - document.querySelector('.header').offsetHeight,
+        element.getBoundingClientRect().top -
+          document.body.getBoundingClientRect().top -
+          (getComputedStyle(header).position === 'fixed'
+            ? header.offsetHeight
+            : 0),
       );
     }
   }
 };
-addEventListener('hashchange', () => onHash());
-setTimeout(() => onHash());
+
+export default header => {
+  addEventListener('hashchange', () => onHash(header));
+  addEventListener('load', () => onHash(header));
+};
