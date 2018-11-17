@@ -1,0 +1,59 @@
+.hero {
+  background: center / cover no-repeat fixed;
+  color: white;
+  font-size: 24px;
+  overflow: hidden;
+  padding: 30px;
+  position: relative;
+  text-align: center;
+}
+
+.hero::after {
+  animation: hero-arrow 1.7s infinite ease;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  content: '';
+  display: inline-block;
+  height: 25px;
+  position: relative;
+  width: 25px;
+}
+
+.hero::before {
+  background-image: -webkit-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.7)
+  );
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.hero > * {
+  position: relative;
+}
+
+.hero > h1 {
+  font-size: 72px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+@keyframes hero-arrow {
+  0% {
+    transform: rotate(45deg) translate(0);
+  }
+  50% {
+    transform: rotate(45deg) translate(-7px, -7px);
+  }
+  55% {
+    transform: rotate(45deg) translateY(-7px, -7px);
+  }
+  100% {
+    transform: rotate(45deg) translateY(0);
+  }
+}
