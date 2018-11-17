@@ -19,10 +19,10 @@
     top: 0;
     width: 50%;
   }
-  .landing-card:not(.right) > div:empty {
+  .landing-card:not(.is-right) > div:empty {
     left: 0;
   }
-  .landing-card.right > div:empty {
+  .landing-card.is-right > div:empty {
     right: 0;
   }
 }
@@ -35,10 +35,10 @@
     padding: 65px;
     width: 50%;
   }
-  .landing-card:not(.right) > div:not(:empty) {
+  .landing-card:not(.is-right) > div:not(:empty) {
     margin-left: 50%;
   }
-  .landing-card.right > div:not(:empty) {
+  .landing-card.is-right > div:not(:empty) {
     margin-right: 50%;
   }
 }
