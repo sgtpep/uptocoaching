@@ -8,4 +8,4 @@ navigationActivation(
   header,
 );
 pageJumps(header);
-parallax(document.querySelectorAll('.parallax'));
+parallax(document.querySelectorAll('.cover, .hero'));
