@@ -1,0 +1,12 @@
+.feedback > input,
+.feedback > textarea {
+  border: 1px solid #c7c7c7;
+  display: block;
+  margin-bottom: 25px;
+  padding: 20px;
+  width: 100%;
+}
+
+.feedback > textarea {
+  height: 135px;
+}
