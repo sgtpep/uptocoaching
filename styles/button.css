@@ -1,14 +1,17 @@
 .button {
-  background-color: #0a0a0a;
+  background-color: #6ea023;
   border-radius: 30px;
+  border: 2px solid #6ea023;
   color: white;
   display: inline-block;
   font-weight: bold;
-  line-height: 60px;
+  line-height: 56px;
   padding-left: 30px;
   padding-right: 30px;
+  transition: all 0.3s;
   white-space: nowrap;
 }
 .button:hover {
-  border-bottom: none;
+  background-color: white;
+  color: #6ea023;
 }

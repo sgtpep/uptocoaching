@@ -2,6 +2,6 @@ a {
   color: #6ea023;
   text-decoration: none;
 }
-a:hover {
+a:not(.button):hover {
   border-bottom: 1px solid;
 }
