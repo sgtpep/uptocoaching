@@ -1,6 +1,7 @@
 a {
   border-bottom: 1px solid transparent;
   color: #6ea023;
+  cursor: pointer;
   text-decoration: none;
 }
 a:not(.button):hover {
