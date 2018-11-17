@@ -1,0 +1,39 @@
+.message > a {
+  background-color: #6ea023;
+  border-radius: 50%;
+  bottom: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  height: 60px;
+  position: fixed;
+  right: 20px;
+  transition: background-color 0.3s;
+  width: 60px;
+  z-index: 1000;
+}
+.message > a.is-active {
+  background-color: white;
+}
+
+.message > a > svg {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: all 0.3s;
+}
+.message > a > svg:first-child {
+  fill: white;
+  top: 5px;
+  width: 28px;
+}
+.message > a > svg:last-child {
+  width: 18px;
+}
+.message > a.is-active > svg:first-child,
+.message > a:not(.is-active) > svg:last-child {
+  opacity: 0;
+  transform: scale(0.1);
+}
