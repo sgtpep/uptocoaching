@@ -1,6 +1,5 @@
 import navigationActivation from './navigation-activation.js';
 import pageJumps from './page-jumps.js';
-import parallax from './parallax.js';
 
 const header = document.querySelector('.header');
 navigationActivation(
@@ -8,4 +7,3 @@ navigationActivation(
   header,
 );
 pageJumps(header);
-parallax(document.querySelectorAll('.cover, .hero'));

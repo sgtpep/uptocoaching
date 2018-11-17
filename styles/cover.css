@@ -1,5 +1,4 @@
 .cover {
   background: center / cover no-repeat fixed;
   height: 100vh;
-  transition: background-position-y 0.1s;
 }
