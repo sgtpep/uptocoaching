@@ -1,17 +1,18 @@
 @import '../node_modules/normalize.css/normalize.css';
 @import 'anchor.css';
 @import 'box-sizing.css';
+@import 'font.css';
+@import 'headings.css';
+@import 'no-list.css';
+
 @import 'button.css';
 @import 'contacts.css';
 @import 'cover.css';
-@import 'font.css';
 @import 'footer.css';
 @import 'header.css';
-@import 'headings.css';
 @import 'hero.css';
 @import 'landing-card.css';
 @import 'landing-education.css';
 @import 'landing-interview.css';
 @import 'landing-themes.css';
-@import 'no-list.css';
 @import 'review.css';
