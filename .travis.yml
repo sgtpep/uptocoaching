@@ -1,4 +1,4 @@
-before_deploy: rm -r ./{.*,images,lib,notes,package.json,scripts,styles,yarn.lock} && find -type f -executable -delete
+before_deploy: rm -r ./{.[!.]*,images,lib,notes,package.json,scripts,styles,yarn.lock} && find -type f -executable -delete
 language: node_js
 deploy:
   github_token:
