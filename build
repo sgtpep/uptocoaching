@@ -13,7 +13,7 @@ const child_process = require('child_process');
           'd',
           '!',
           '-regex',
-          String.raw`\./\(\..+\|lib\|node_modules\|scripts\)\(\|/.+\)`,
+          String.raw`\./\(\..+\|node_modules\)\(\|/.+\)`,
         ],
         { encoding: 'utf8' },
       )
@@ -21,9 +21,9 @@ const child_process = require('child_process');
       .slice(0, -1)
 ).forEach(directory => {
   const html = require([
-    path.join(directory, 'index.js'),
-    path.join(directory.replace(/^\.\/ru($|\/)/, ''), 'index.js'),
-    './lib/index.js',
+    `./${path.join(directory, 'layout.js')}`,
+    `./${path.join(directory.replace(/^\.\/ru($|\/)/, ''), 'layout.js')}`,
+    './lib/layout.js',
   ].find(modulePath => fs.existsSync(modulePath)))(directory);
   if (html !== undefined) {
     fs.writeFileSync(path.join(directory, 'index.html'), html);
