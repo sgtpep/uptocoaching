@@ -68,7 +68,7 @@ const processHTML = index =>
         },
         image: { resolve: resolveImage, transform: transformImage },
         script: { resolve: resolveScript, transform: transformScript },
-        style: { transform: transformStyle },
+        style: { resolve: resolveStyle, transform: transformStyle },
       },
     }),
   ])
@@ -81,7 +81,7 @@ const resolveBackgroundImage = node =>
   parseStyle(node.attrs.style)
     .map(declaration =>
       declaration[0] === 'background-image'
-        ? declaration[1].replace(/^url\(['"]?([^'")]+).+$/, '$1')
+        ? testURL(declaration[1].replace(/^url\(['"]?([^'")]+).+$/, '$1'))
         : undefined,
     )
     .find(Boolean);
@@ -91,6 +91,12 @@ const resolveImage = node =>
 
 const resolveScript = node =>
   node.tag === 'script' && node.attrs && testURL(node.attrs.src);
+
+const resolveScript = node =>
+  node.tag === 'link' &&
+  node.attrs &&
+  node.attrs.rel === 'stylesheet' &&
+  testURL(node.attrs.href);
 
 const transformBackgroundImage = (node, data) => {
   node.attrs.style = parseStyle(node.attrs.style)
