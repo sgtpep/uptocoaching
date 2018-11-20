@@ -1,4 +1,4 @@
-before_deploy: rm -fr ./{.[!.]*,images,lib,node_modules,notes,package.json,scripts,styles,yarn.lock} && find -type f -executable -o -regex '.*/\(body.html\|meta.json\)' -delete
+before_deploy: rm -fr ./{.[!.]*,images,lib,node_modules,notes,package.json,scripts,styles,yarn.lock} && find -type f -executable -o -regex '.*/\(body\.html\|meta\.json\)' -delete
 language: node_js
 deploy:
   github_token:
