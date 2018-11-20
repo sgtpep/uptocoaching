@@ -1,0 +1,9 @@
+posthtml-inline-assets
+embed styles
+embed scripts
+embed images
+
+autoprefixer
+minimize styles
+minimize scripts
+minimize html
