@@ -1,5 +1,6 @@
-travis
-exclude .*, lib, node_modules, body.html, meta.json, executables, todo, scripts, styles, package.json, yarn.lock
+exclude files from gh-pages
+  assets / images
+  .*, lib, node_modules, body.html, meta.json, executables, todo, scripts, styles, package.json, yarn.lock, notes
 domain
 activate formspree x2
 close tilda
