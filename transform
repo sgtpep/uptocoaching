@@ -124,8 +124,7 @@ child_process
   .reduce(
     (promise, index) =>
       promise.then(() =>
-        posthtml()
-          .use(posthtmlInlineAssets({ errors: 'throw', transforms }))
+        posthtml([posthtmlInlineAssets({ errors: 'throw', transforms })])
           .process(fs.readFileSync(index))
           .then(result => fs.writeFileSync(`${index}~`, result.html)),
       ),
