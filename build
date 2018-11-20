@@ -3,29 +3,37 @@ const fs = require('fs');
 const path = require('path');
 const child_process = require('child_process');
 
-(process.argv.length > 2
-  ? process.argv.slice(2)
-  : child_process
-      .spawnSync(
-        'find',
-        [
-          '-type',
-          'd',
-          '!',
-          '-regex',
-          String.raw`\./\(\..+\|node_modules\)\(\|/.+\)`,
-        ],
-        { encoding: 'utf8' },
-      )
-      .stdout.split('\n')
-      .slice(0, -1)
-).forEach(directory => {
-  const html = require([
+const directories = () =>
+  process.argv.length > 2
+    ? process.argv.slice(2)
+    : child_process
+        .spawnSync(
+          'find',
+          [
+            '-type',
+            'd',
+            '!',
+            '-regex',
+            String.raw`\./\(\..+\|node_modules\)\(\|/.+\)`,
+          ],
+          { encoding: 'utf8' },
+        )
+        .stdout.split('\n')
+        .slice(0, -1);
+
+const layout = directory =>
+  require([
     `./${path.join(directory, 'layout.js')}`,
     `./${path.join(directory.replace(/^\.\/ru($|\/)/, ''), 'layout.js')}`,
     './lib/layout.js',
-  ].find(modulePath => fs.existsSync(modulePath)))(directory);
-  if (html !== undefined) {
-    fs.writeFileSync(path.join(directory, 'index.html'), html);
-  }
-});
+  ].find(module => fs.existsSync(module)))(directory);
+
+const main = () =>
+  directories().forEach(directory => {
+    const html = layout(directory);
+    if (html !== undefined) {
+      fs.writeFileSync(path.join(directory, 'index.html'), html);
+    }
+  });
+
+main();

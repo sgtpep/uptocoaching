@@ -16,119 +16,129 @@ const UglifyJS = require('uglify-js');
 
 const cache = { scripts: {}, styles: {} };
 
-const transforms = {
-  backgroundImage: {
-    resolve: node =>
-      node.attrs &&
-      node.attrs.style &&
-      node.attrs.style
-        .split(';')
-        .map(declaration =>
-          declaration.split(':', 2).map(component => component.trim()),
-        )
-        .find(declaration => declaration[0] === 'background-image')[1]
-        .replace(/^url\(['"]?([^'")]+).+$/, '$1'),
-    transform: (node, data) => {
-      node.attrs.style = node.attrs.style
-        .split(';')
-        .map(declaration =>
-          declaration.split(':', 2).map(component => component.trim()),
-        )
-        .map(declaration =>
-          declaration[0] === 'background-image'
-            ? [
-                declaration[0],
-                `url(data:${
-                  data.from.endsWith('.svg') ? 'image/svg+xml' : data.mime
-                };base64,${data.buffer.toString('base64')})`,
-              ]
-            : declaration,
-        )
-        .map(declaration => declaration.join(': '))
-        .join('; ');
-    },
-  },
-  image: {
-    transform(node, data) {
-      node.attrs.src = `data:${
-        data.from.endsWith('.svg') ? 'image/svg+xml' : data.mime
-      };base64,${data.buffer.toString('base64')}`;
-    },
-  },
-  script: {
-    transform: (node, data) => {
-      delete node.attrs.src;
-      if (node.attrs.type === 'module') {
-        delete node.attrs.type;
-      }
-      if (data.from in cache.scripts) {
-        node.content = cache.scripts[data.from];
-      } else {
-        return rollup
-          .rollup({
-            input: data.from,
-            plugins: [
-              rollupBabel({
-                ignore: ['./node_modules'],
-                presets: [['@babel/env', { useBuiltIns: 'usage' }]],
-              }),
-              rollupCommonJS(),
-              rollupNodeResolve(),
-            ],
-          })
-          .then(bundle => bundle.generate({ format: 'iife' }))
-          .then(output => {
-            node.content = UglifyJS.minify(output.code).code;
-            cache.scripts[data.from] = node.content;
-          });
-      }
-    },
-  },
-  style: {
-    transform: (node, data) => {
-      delete node.attrs.href;
-      delete node.attrs.rel;
-      node.tag = 'style';
-      if (data.from in cache.styles) {
-        node.content = cache.styles[data.from];
-      } else {
-        return postcss([
-          postcssImport(),
-          autoprefixer(),
-          postcssURL({ url: 'inline' }),
-        ])
-          .process(data.buffer.toString('utf8'), { from: data.from })
-          .then(output => {
-            node.content = csso.minify(output.css).css;
-            cache.styles[data.from] = node.content;
-          });
-      }
-    },
-  },
-};
+const indices = () =>
+  child_process
+    .spawnSync(
+      'find',
+      [
+        '-type',
+        'f',
+        '-name',
+        'index.html',
+        '!',
+        '-regex',
+        String.raw`\./\(\..+\|node_modules\)/.+`,
+      ],
+      { encoding: 'utf8' },
+    )
+    .stdout.split('\n')
+    .slice(0, -1);
 
-child_process
-  .spawnSync(
-    'find',
-    [
-      '-type',
-      'f',
-      '-name',
-      'index.html',
-      '!',
-      '-regex',
-      String.raw`\./\(\..+\|node_modules\)/.+`,
-    ],
-    { encoding: 'utf8' },
-  )
-  .stdout.split('\n')
-  .slice(0, -1)
-  .reduce(
-    (promise, index) =>
-      promise.then(() =>
-        posthtml([posthtmlInlineAssets({ errors: 'throw', transforms })])
-          .process(fs.readFileSync(index))
-          .then(result => fs.writeFileSync(index, result.html)),
-      ),
+const main = () =>
+  indices().reduce(
+    (promise, index) => promise.then(() => processHTML(index)),
     Promise.resolve(),
   );
+
+const processHTML = index =>
+  posthtml([
+    posthtmlInlineAssets({
+      errors: 'throw',
+      transforms: {
+        backgroundImage: {
+          resolve: resolveBackgroundImage,
+          transform: transformBackgroundImage,
+        },
+        image: { transform: transformImage },
+        script: { transform: transformScript },
+        style: { transform: transformStyle },
+      },
+    }),
+  ])
+    .process(fs.readFileSync(index))
+    .then(result => fs.writeFileSync(index, result.html));
+
+const resolveBackgroundImage = node =>
+  node.attrs &&
+  node.attrs.style &&
+  node.attrs.style
+    .split(';')
+    .map(declaration =>
+      declaration.split(':', 2).map(component => component.trim()),
+    )
+    .find(declaration => declaration[0] === 'background-image')[1]
+    .replace(/^url\(['"]?([^'")]+).+$/, '$1');
+
+const transformBackgroundImage = (node, data) => {
+  node.attrs.style = node.attrs.style
+    .split(';')
+    .map(declaration =>
+      declaration.split(':', 2).map(component => component.trim()),
+    )
+    .map(declaration =>
+      declaration[0] === 'background-image'
+        ? [
+            declaration[0],
+            `url(data:${
+              data.from.endsWith('.svg') ? 'image/svg+xml' : data.mime
+            };base64,${data.buffer.toString('base64')})`,
+          ]
+        : declaration,
+    )
+    .map(declaration => declaration.join(': '))
+    .join('; ');
+};
+
+const transformImage = (node, data) => {
+  node.attrs.src = `data:${
+    data.from.endsWith('.svg') ? 'image/svg+xml' : data.mime
+  };base64,${data.buffer.toString('base64')}`;
+};
+
+const transformScript = (node, data) => {
+  delete node.attrs.src;
+  delete node.attrs.type;
+  if (data.from in cache.scripts) {
+    node.content = cache.scripts[data.from];
+  } else {
+    return rollup
+      .rollup({
+        input: data.from,
+        plugins: [
+          rollupBabel({
+            ignore: ['./node_modules'],
+            presets: [['@babel/env', { useBuiltIns: 'usage' }]],
+          }),
+          rollupCommonJS(),
+          rollupNodeResolve(),
+        ],
+      })
+      .then(bundle => bundle.generate({ format: 'iife' }))
+      .then(output => {
+        node.content = UglifyJS.minify(output.code).code;
+        cache.scripts[data.from] = node.content;
+      });
+  }
+};
+
+const transformStyle = (node, data) => {
+  delete node.attrs.href;
+  delete node.attrs.rel;
+  node.tag = 'style';
+  if (data.from in cache.styles) {
+    node.content = cache.styles[data.from];
+  } else {
+    return postcss([
+      postcssImport(),
+      autoprefixer(),
+      postcssURL({ url: 'inline' }),
+    ])
+      .process(data.buffer.toString('utf8'), { from: data.from })
+      .then(output => {
+        node.content = csso.minify(output.css).css;
+        cache.styles[data.from] = node.content;
+      });
+  }
+};
+
+main();
