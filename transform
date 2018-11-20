@@ -27,7 +27,7 @@ const transforms = {
           declaration.split(':', 2).map(component => component.trim()),
         )
         .find(declaration => declaration[0] === 'background-image')[1]
-        .replace(/^url\(['"](.+)['"]\)$/, '$1'),
+        .replace(/^url\(['"]?([^'")]+).+$/, '$1'),
     transform: (node, data) => {
       node.attrs.style = node.attrs.style
         .split(';')
