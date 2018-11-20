@@ -8,6 +8,76 @@ const posthtml = require('posthtml');
 const posthtmlInlineAssets = require('posthtml-inline-assets');
 const rollup = require('rollup');
 
+const transforms = {
+  backgroundImage: {
+    resolve: node =>
+      node.attrs &&
+      node.attrs.style &&
+      node.attrs.style
+        .split(';')
+        .map(declaration =>
+          declaration.split(':', 2).map(component => component.trim()),
+        )
+        .find(declaration => declaration[0] === 'background-image')[1]
+        .replace(/^url\(['"](.+)['"]\)$/, '$1'),
+    transform: (node, data) => {
+      node.attrs.style = node.attrs.style
+        .split(';')
+        .map(declaration => {
+          const [property, value] = declaration
+            .split(':', 2)
+            .map(component => component.trim());
+          return `${property}: ${
+            property === 'background-image'
+              ? `url(data:${
+                  data.from.endsWith('.svg') ? 'image/svg+xml' : data.mime
+                };base64,${data.buffer.toString('base64')})`
+              : value
+          }`;
+        })
+        .join('; ');
+    },
+  },
+  image: {
+    transform(node, data) {
+      node.attrs.src = `data:${
+        data.from.endsWith('.svg') ? 'image/svg+xml' : data.mime
+      };base64,${data.buffer.toString('base64')}`;
+    },
+  },
+  script: {
+    transform: (node, data) => {
+      delete node.attrs.src;
+      if (node.attrs.type === 'module') {
+        delete node.attrs.type;
+        return rollup
+          .rollup({ input: data.from })
+          .then(bundle => bundle.generate({ format: 'iife' }))
+          .then(output => {
+            node.content = output.code;
+          });
+      } else {
+        node.content = data.buffer.toString('utf8');
+      }
+    },
+  },
+  style: {
+    transform: (node, data) =>
+      postcss()
+        .use(postcssImport())
+        .use(postcssURL({ url: 'inline' }))
+        .process(data.buffer.toString('utf8'), {
+          from: data.from,
+        })
+        .then(result => {
+          delete node.attrs.href;
+          delete node.attrs.rel;
+          node.content = result.css;
+          node.tag = 'style';
+        }),
+  },
+};
+
 child_process
   .spawnSync(
     'find',
@@ -28,85 +98,7 @@ child_process
     (promise, index) =>
       promise.then(
         posthtml()
-          .use(
-            posthtmlInlineAssets({
-              transforms: {
-                backgroundImage: {
-                  resolve: node =>
-                    node.attrs &&
-                    node.attrs.style &&
-                    node.attrs.style
-                      .split(';')
-                      .map(declaration =>
-                        declaration
-                          .split(':', 2)
-                          .map(component => component.trim()),
-                      )
-                      .find(
-                        declaration => declaration[0] === 'background-image',
-                      )[1]
-                      .replace(/^url\(['"](.+)['"]\)$/, '$1'),
-                  transform: (node, data) => {
-                    node.attrs.style = node.attrs.style
-                      .split(';')
-                      .map(declaration => {
-                        const [property, value] = declaration
-                          .split(':', 2)
-                          .map(component => component.trim());
-                        return `${property}: ${
-                          property === 'background-image'
-                            ? `url(data:${
-                                data.from.endsWith('.svg')
-                                  ? 'image/svg+xml'
-                                  : data.mime
-                              };base64,${data.buffer.toString('base64')})`
-                            : value
-                        }`;
-                      })
-                      .join('; ');
-                  },
-                },
-                image: {
-                  transform(node, data) {
-                    node.attrs.src = `data:${
-                      data.from.endsWith('.svg') ? 'image/svg+xml' : data.mime
-                    };base64,${data.buffer.toString('base64')}`;
-                  },
-                },
-                script: {
-                  transform: (node, data) => {
-                    delete node.attrs.src;
-                    if (node.attrs.type === 'module') {
-                      delete node.attrs.type;
-                      return rollup
-                        .rollup({ input: data.from })
-                        .then(bundle => bundle.generate({ format: 'iife' }))
-                        .then(output => {
-                          node.content = output.code;
-                        });
-                    } else {
-                      node.content = data.buffer.toString('utf8');
-                    }
-                  },
-                },
-                style: {
-                  transform: (node, data) =>
-                    postcss()
-                      .use(postcssImport())
-                      .use(postcssURL({ url: 'inline' }))
-                      .process(data.buffer.toString('utf8'), {
-                        from: data.from,
-                      })
-                      .then(result => {
-                        delete node.attrs.href;
-                        delete node.attrs.rel;
-                        node.content = result.css;
-                        node.tag = 'style';
-                      }),
-                },
-              },
-            }),
-          )
+          .use(posthtmlInlineAssets({ transforms }))
           .process(fs.readFileSync(index))
           .then(result => fs.writeFileSync(index, result.html)),
       ),
