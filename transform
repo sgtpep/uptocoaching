@@ -8,6 +8,8 @@ const posthtml = require('posthtml');
 const posthtmlInlineAssets = require('posthtml-inline-assets');
 const rollup = require('rollup');
 
+const cache = { scripts: {}, styles: {} };
+
 const transforms = {
   backgroundImage: {
     resolve: node =>
@@ -46,35 +48,41 @@ const transforms = {
     },
   },
   script: {
-    transform: (node, data) => {
+    transform: async (node, data) => {
       delete node.attrs.src;
-      if (node.attrs.type === 'module') {
-        delete node.attrs.type;
-        return rollup
-          .rollup({ input: data.from })
-          .then(bundle => bundle.generate({ format: 'iife' }))
-          .then(output => {
-            node.content = output.code;
-          });
+      if (data.from in cache.scripts) {
+        node.content = cache.scripts[data.from];
       } else {
-        node.content = data.buffer.toString('utf8');
+        let content;
+        if (node.attrs.type === 'module') {
+          delete node.attrs.type;
+          content = await rollup
+            .rollup({ input: data.from })
+            .then(bundle => bundle.generate({ format: 'iife' }))
+            .then(output => output.code);
+        } else {
+          content = data.buffer.toString('utf8');
+        }
+        node.content = content;
+        cache.scripts[data.from] = node.content;
       }
     },
   },
   style: {
-    transform: (node, data) =>
-      postcss()
-        .use(postcssImport())
-        .use(postcssURL({ url: 'inline' }))
-        .process(data.buffer.toString('utf8'), {
-          from: data.from,
-        })
-        .then(result => {
-          delete node.attrs.href;
-          delete node.attrs.rel;
-          node.content = result.css;
-          node.tag = 'style';
-        }),
+    transform: async (node, data) => {
+      delete node.attrs.href;
+      delete node.attrs.rel;
+      node.tag = 'style';
+      if (data.from in cache.styles) {
+        node.content = cache.styles[data.from];
+      } else {
+        node.content = await postcss()
+          .use(postcssImport())
+          .use(postcssURL({ url: 'inline' }))
+          .process(data.buffer.toString('utf8'), { from: data.from });
+        cache.styles[data.from] = node.content;
+      }
+    },
   },
 };
 
@@ -96,11 +104,11 @@ child_process
   .slice(0, -1)
   .reduce(
     (promise, index) =>
-      promise.then(
+      promise.then(() =>
         posthtml()
           .use(posthtmlInlineAssets({ transforms }))
           .process(fs.readFileSync(index))
-          .then(result => fs.writeFileSync(index, result.html)),
+          .then(result => fs.writeFileSync(`${index}~`, result.html)),
       ),
     Promise.resolve(),
   );

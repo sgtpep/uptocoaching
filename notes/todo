@@ -1,8 +1,6 @@
-cache x3
-
 babel
   review scripts
 autoprefixer
 minimize styles
-minimize scripts
+minimize scripts x2
 minimize html
