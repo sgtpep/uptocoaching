@@ -1,14 +1,6 @@
-clicky cookies?
+activate formspree x2
+close tilda
+
 downsize images
 adaptive images
 scheduling
-
-dig www.uptocoaching.com +nostats +nocomments +nocmd https://help.github.com/articles/setting-up-a-www-subdomain/
-https
-  redirects
-    http://uptocoaching.com/
-    https://uptocoaching.com/
-    http://www.uptocoaching.com/
-    https://www.uptocoaching.com/
-  activate formspree x2
-  close tilda
