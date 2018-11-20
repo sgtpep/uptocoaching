@@ -109,7 +109,7 @@ const transformBackgroundImage = (node, data) => {
     .join('; ');
 };
 
-const testURL = url => url && !/^(https?:|)\/\//.test(url);
+const testURL = url => /^(https?:|)\/\//.test(url) || url;
 
 const transformImage = (node, data) => {
   node.attrs.src = `data:${filterMime(
