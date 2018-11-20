@@ -16,6 +16,9 @@ const UglifyJS = require('uglify-js');
 
 const cache = { scripts: {}, styles: {} };
 
+const filterMime = (mime, file) =>
+  file.endsWith('.svg') ? 'image/svg+xml' : mime;
+
 const indices = () =>
   child_process
     .spawnSync(
@@ -40,6 +43,13 @@ const main = () =>
     Promise.resolve(),
   );
 
+const parseStyle = style =>
+  style
+    .split(';')
+    .map(declaration =>
+      declaration.split(':', 2).map(component => component.trim()),
+    );
+
 const processHTML = index =>
   posthtml([
     posthtmlInlineAssets({
@@ -61,27 +71,24 @@ const processHTML = index =>
 const resolveBackgroundImage = node =>
   node.attrs &&
   node.attrs.style &&
-  node.attrs.style
-    .split(';')
+  parseStyle(node.attrs.style)
     .map(declaration =>
-      declaration.split(':', 2).map(component => component.trim()),
+      declaration[0] === 'background-image'
+        ? declaration[1].replace(/^url\(['"]?([^'")]+).+$/, '$1')
+        : undefined,
     )
-    .find(declaration => declaration[0] === 'background-image')[1]
-    .replace(/^url\(['"]?([^'")]+).+$/, '$1');
+    .find(Boolean);
 
 const transformBackgroundImage = (node, data) => {
-  node.attrs.style = node.attrs.style
-    .split(';')
-    .map(declaration =>
-      declaration.split(':', 2).map(component => component.trim()),
-    )
+  node.attrs.style = parseStyle(node.attrs.style)
     .map(declaration =>
       declaration[0] === 'background-image'
         ? [
             declaration[0],
-            `url(data:${
-              data.from.endsWith('.svg') ? 'image/svg+xml' : data.mime
-            };base64,${data.buffer.toString('base64')})`,
+            `url(data:${filterMime(
+              data.mime,
+              data.from,
+            )};base64,${data.buffer.toString('base64')})`,
           ]
         : declaration,
     )
@@ -90,9 +97,10 @@ const transformBackgroundImage = (node, data) => {
 };
 
 const transformImage = (node, data) => {
-  node.attrs.src = `data:${
-    data.from.endsWith('.svg') ? 'image/svg+xml' : data.mime
-  };base64,${data.buffer.toString('base64')}`;
+  node.attrs.src = `data:${filterMime(
+    data.mime,
+    data.from,
+  )};base64,${data.buffer.toString('base64')}`;
 };
 
 const transformScript = (node, data) => {
