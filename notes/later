@@ -1,8 +1,3 @@
-deploy
-  yarn install
-  exclude .*, lib, node_modules, body.html, meta.json, executables, todo, scripts, styles, package.json, yarn.lock
-  travis
-  activate formspree x2
 check tilda analytics
   close tilda
 scheduling
