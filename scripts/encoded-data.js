@@ -1,11 +1,9 @@
 export default () => {
-  Array.prototype.forEach.call(
-    document.querySelectorAll('[data-encoded]'),
-    element => {
-      const properties = JSON.parse(atob(element.dataset.encoded));
-      Object.keys(properties).forEach(name => {
-        element[name] = properties[name];
-      });
-    },
+  [...document.querySelectorAll('[data-encoded]')].forEach(element =>
+    Object.entries(JSON.parse(atob(element.dataset.encoded))).forEach(
+      ([name, value]) => {
+        element[name] = value;
+      },
+    ),
   );
 };

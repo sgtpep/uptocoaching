@@ -1,11 +1,10 @@
 const onScroll = (anchors, header, elements) => {
   const bodyTop = document.body.getBoundingClientRect().top;
-  const element = Array.prototype.find.call(elements, element => {
+  const element = [...elements].find(element => {
     const top = element.getBoundingClientRect().top - bodyTop;
     return pageYOffset >= top - header.offsetHeight - 10 && pageYOffset <= top;
   });
-  Array.prototype.forEach.call(
-    anchors,
+  [...anchors].forEach(
     anchor =>
       element && anchor.hash == `#${element.id}`
         ? anchor.classList.add('active')
@@ -15,7 +14,7 @@ const onScroll = (anchors, header, elements) => {
 
 export default (anchors, header) => {
   const elements = document.querySelectorAll(
-    Array.prototype.map.call(anchors, anchor => anchor.hash).join(', '),
+    [...anchors].map(anchor => anchor.hash).join(', '),
   );
   addEventListener('scroll', () => onScroll(anchors, header, elements));
   onScroll(anchors, header, elements);
