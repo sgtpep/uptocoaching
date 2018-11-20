@@ -4,11 +4,10 @@ const onScroll = (anchors, header, elements) => {
     const top = element.getBoundingClientRect().top - bodyTop;
     return pageYOffset >= top - header.offsetHeight - 10 && pageYOffset <= top;
   });
-  [...anchors].forEach(
-    anchor =>
-      element && anchor.hash == `#${element.id}`
-        ? anchor.classList.add('active')
-        : anchor.classList.remove('active'),
+  [...anchors].forEach(anchor =>
+    element && anchor.hash == `#${element.id}`
+      ? anchor.classList.add('active')
+      : anchor.classList.remove('active'),
   );
 };
 
