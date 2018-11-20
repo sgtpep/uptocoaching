@@ -92,7 +92,7 @@ const resolveImage = node =>
 const resolveScript = node =>
   node.tag === 'script' && node.attrs && testURL(node.attrs.src);
 
-const resolveScript = node =>
+const resolveStyle = node =>
   node.tag === 'link' &&
   node.attrs &&
   node.attrs.rel === 'stylesheet' &&
