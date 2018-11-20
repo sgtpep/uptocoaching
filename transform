@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const autoprefixer = require('autoprefixer');
 const child_process = require('child_process');
 const fs = require('fs');
 const postcss = require('postcss');
@@ -88,10 +89,11 @@ const transforms = {
       if (data.from in cache.styles) {
         node.content = cache.styles[data.from];
       } else {
-        node.content = await postcss()
-          .use(postcssImport())
-          .use(postcssURL({ url: 'inline' }))
-          .process(data.buffer.toString('utf8'), { from: data.from });
+        node.content = await postcss([
+          postcssImport(),
+          autoprefixer(),
+          postcssURL({ url: 'inline' }),
+        ]).process(data.buffer.toString('utf8'), { from: data.from });
         cache.styles[data.from] = node.content;
       }
     },
