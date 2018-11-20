@@ -6,4 +6,5 @@ deploy:
     branch: master
   provider: pages
   skip-cleanup: true
+node_js: node
 script: ./build && ./transform
