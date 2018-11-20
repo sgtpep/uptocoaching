@@ -39,7 +39,14 @@ const indices = () =>
 
 const main = () =>
   indices().reduce(
-    (promise, index) => promise.then(() => processHTML(index)),
+    (promise, index) =>
+      promise.then(
+        () => processHTML(index),
+        error => {
+          console.error(error);
+          process.exit(1);
+        },
+      ),
     Promise.resolve(),
   );
 
