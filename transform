@@ -1,0 +1,105 @@
+#!/usr/bin/env node
+const child_process = require('child_process');
+const fs = require('fs');
+const postcss = require('postcss');
+const postcssImport = require('postcss-import');
+const postcssURL = require('postcss-url');
+const posthtml = require('posthtml');
+const posthtmlInlineAssets = require('posthtml-inline-assets');
+const rollup = require('rollup');
+
+child_process
+  .spawnSync(
+    'find',
+    [
+      '-type',
+      'f',
+      '-name',
+      'index.html',
+      '!',
+      '-regex',
+      String.raw`\./\(\..+\|node_modules\)/.+`,
+    ],
+    { encoding: 'utf8' },
+  )
+  .stdout.split('\n')
+  .slice(0, -1)
+  .reduce(
+    (promise, index) =>
+      promise.then(
+        posthtml()
+          .use(
+            posthtmlInlineAssets({
+              transforms: {
+                backgroundImage: {
+                  resolve: node =>
+                    node.attrs &&
+                    node.attrs.style &&
+                    node.attrs.style
+                      .split(';')
+                      .map(declaration =>
+                        declaration
+                          .split(':', 2)
+                          .map(component => component.trim()),
+                      )
+                      .find(
+                        declaration => declaration[0] === 'background-image',
+                      )[1]
+                      .replace(/^url\(['"](.+)['"]\)$/, '$1'),
+                  transform: (node, data) => {
+                    node.attrs.style = node.attrs.style
+                      .split(';')
+                      .map(declaration => {
+                        const [property, value] = declaration
+                          .split(':', 2)
+                          .map(component => component.trim());
+                        return `${property}: ${
+                          property === 'background-image'
+                            ? `url(data:${
+                                data.mime
+                              };base64,${data.buffer.toString('base64')})`
+                            : value
+                        }`;
+                      })
+                      .join('; ');
+                  },
+                },
+                script: {
+                  transform: (node, data) => {
+                    delete node.attrs.src;
+                    if (node.attrs.type === 'module') {
+                      delete node.attrs.type;
+                      return rollup
+                        .rollup({ input: data.from })
+                        .then(bundle => bundle.generate({ format: 'iife' }))
+                        .then(output => {
+                          node.content = output.code;
+                        });
+                    } else {
+                      node.content = data.buffer.toString('utf8');
+                    }
+                  },
+                },
+                style: {
+                  transform: (node, data) =>
+                    postcss()
+                      .use(postcssImport())
+                      .use(postcssURL({ url: 'inline' }))
+                      .process(data.buffer.toString('utf8'), {
+                        from: data.from,
+                      })
+                      .then(result => {
+                        delete node.attrs.href;
+                        delete node.attrs.rel;
+                        node.content = result.css;
+                        node.tag = 'style';
+                      }),
+                },
+              },
+            }),
+          )
+          .process(fs.readFileSync(index))
+          .then(result => fs.writeFileSync(index, result.html)),
+      ),
+    Promise.resolve(),
+  );

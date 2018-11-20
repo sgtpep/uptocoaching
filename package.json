@@ -1,5 +1,13 @@
 {
   "dependencies": {
     "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "postcss": "^7.0.6",
+    "postcss-import": "^12.0.1",
+    "postcss-url": "^8.0.0",
+    "posthtml": "^0.11.3",
+    "posthtml-inline-assets": "^3.0.0",
+    "rollup": "^0.67.3"
   }
 }

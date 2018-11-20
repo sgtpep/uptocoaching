@@ -1,8 +1,7 @@
-posthtml-inline-assets
-embed styles
-embed scripts
-embed images
+cache x3
 
+babel
+  review scripts
 autoprefixer
 minimize styles
 minimize scripts
