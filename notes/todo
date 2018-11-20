@@ -1,13 +1,14 @@
-analytics: github, clicky
+clicky cookies?
 downsize images
 adaptive images
 scheduling
 
-redirects
-  http://uptocoaching.com/
-  https://uptocoaching.com/
-  http://www.uptocoaching.com/
-  https://www.uptocoaching.com/
+dig www.uptocoaching.com +nostats +nocomments +nocmd https://help.github.com/articles/setting-up-a-www-subdomain/
 https
+  redirects
+    http://uptocoaching.com/
+    https://uptocoaching.com/
+    http://www.uptocoaching.com/
+    https://www.uptocoaching.com/
   activate formspree x2
   close tilda
