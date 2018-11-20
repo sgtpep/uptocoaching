@@ -1,4 +1,7 @@
 domain
+  uptocoaching.com -> www.uptocoaching.com
+  http -> https
+
 activate formspree x2
 close tilda
 analytics: github, clicky
