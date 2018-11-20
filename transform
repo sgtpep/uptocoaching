@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+const babelCore = require('@babel/core');
+const babelPresetEnv = require('@babel/preset-env');
 const child_process = require('child_process');
 const fs = require('fs');
 const postcss = require('postcss');
@@ -50,20 +52,22 @@ const transforms = {
   script: {
     transform: async (node, data) => {
       delete node.attrs.src;
+      if (node.attrs.type === 'module') {
+        delete node.attrs.type;
+      }
       if (data.from in cache.scripts) {
         node.content = cache.scripts[data.from];
       } else {
-        let content;
-        if (node.attrs.type === 'module') {
-          delete node.attrs.type;
-          content = await rollup
-            .rollup({ input: data.from })
-            .then(bundle => bundle.generate({ format: 'iife' }))
-            .then(output => output.code);
-        } else {
-          content = data.buffer.toString('utf8');
-        }
-        node.content = content;
+        const code =
+          node.attrs.type === 'module'
+            ? await rollup
+                .rollup({ input: data.from })
+                .then(bundle => bundle.generate({ format: 'iife' }))
+                .then(output => output.code)
+            : data.buffer.toString('utf8');
+        node.content = babelCore.transformSync(code, {
+          presets: [babelPresetEnv],
+        }).code;
         cache.scripts[data.from] = node.content;
       }
     },
