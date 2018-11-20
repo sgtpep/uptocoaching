@@ -56,12 +56,21 @@ child_process
                         return `${property}: ${
                           property === 'background-image'
                             ? `url(data:${
-                                data.mime
+                                data.from.endsWith('.svg')
+                                  ? 'image/svg+xml'
+                                  : data.mime
                               };base64,${data.buffer.toString('base64')})`
                             : value
                         }`;
                       })
                       .join('; ');
+                  },
+                },
+                image: {
+                  transform(node, data) {
+                    node.attrs.src = `data:${
+                      data.from.endsWith('.svg') ? 'image/svg+xml' : data.mime
+                    };base64,${data.buffer.toString('base64')}`;
                   },
                 },
                 script: {
