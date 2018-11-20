@@ -10,6 +10,7 @@ const rollup = require('rollup');
 const rollupBabel = require('rollup-plugin-babel');
 const rollupCommonJS = require('rollup-plugin-commonjs');
 const rollupNodeResolve = require('rollup-plugin-node-resolve');
+const UglifyJS = require('uglify-js');
 
 const cache = { scripts: {}, styles: {} };
 
@@ -73,7 +74,7 @@ const transforms = {
           })
           .then(bundle => bundle.generate({ format: 'iife' }))
           .then(output => {
-            node.content = output.code;
+            node.content = UglifyJS.minify(output.code).code;
             cache.scripts[data.from] = node.content;
           });
       }
