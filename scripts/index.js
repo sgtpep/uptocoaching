@@ -3,9 +3,8 @@ import navigationActivation from './navigation-activation.js';
 import pageJumps from './page-jumps.js';
 
 encodedData();
-const header = document.querySelector('.header');
 navigationActivation(
   document.querySelectorAll('.header-navigation a[href*="#"]'),
-  header,
+  document.querySelector('.header'),
 );
-pageJumps(header);
+pageJumps(document.querySelector('.header'));
