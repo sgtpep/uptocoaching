@@ -4,13 +4,16 @@
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
-    "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.6",
+    "core-js": "^2.5.7",
     "postcss": "^7.0.6",
     "postcss-import": "^12.0.1",
     "postcss-url": "^8.0.0",
     "posthtml": "^0.11.3",
     "posthtml-inline-assets": "^3.0.0",
-    "rollup": "^0.67.3"
+    "rollup": "^0.67.3",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^3.4.0"
   }
 }

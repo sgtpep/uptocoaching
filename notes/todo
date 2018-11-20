@@ -1,5 +1,3 @@
-polyfill Object.entries
-
 autoprefixer
 minimize styles
 minimize scripts x2

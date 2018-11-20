@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-const babelCore = require('@babel/core');
-const babelPresetEnv = require('@babel/preset-env');
 const child_process = require('child_process');
 const fs = require('fs');
 const postcss = require('postcss');
@@ -9,6 +7,9 @@ const postcssURL = require('postcss-url');
 const posthtml = require('posthtml');
 const posthtmlInlineAssets = require('posthtml-inline-assets');
 const rollup = require('rollup');
+const rollupBabel = require('rollup-plugin-babel');
+const rollupCommonJS = require('rollup-plugin-commonjs');
+const rollupNodeResolve = require('rollup-plugin-node-resolve');
 
 const cache = { scripts: {}, styles: {} };
 
@@ -58,17 +59,23 @@ const transforms = {
       if (data.from in cache.scripts) {
         node.content = cache.scripts[data.from];
       } else {
-        const code =
-          node.attrs.type === 'module'
-            ? await rollup
-                .rollup({ input: data.from })
-                .then(bundle => bundle.generate({ format: 'iife' }))
-                .then(output => output.code)
-            : data.buffer.toString('utf8');
-        node.content = babelCore.transformSync(code, {
-          presets: [babelPresetEnv],
-        }).code;
-        cache.scripts[data.from] = node.content;
+        return rollup
+          .rollup({
+            input: data.from,
+            plugins: [
+              rollupBabel({
+                ignore: ['./node_modules'],
+                presets: [['@babel/env', { useBuiltIns: 'usage' }]],
+              }),
+              rollupCommonJS(),
+              rollupNodeResolve(),
+            ],
+          })
+          .then(bundle => bundle.generate({ format: 'iife' }))
+          .then(output => {
+            node.content = output.code;
+            cache.scripts[data.from] = node.content;
+          });
       }
     },
   },
