@@ -54,7 +54,7 @@ const transforms = {
     },
   },
   script: {
-    transform: async (node, data) => {
+    transform: (node, data) => {
       delete node.attrs.src;
       if (node.attrs.type === 'module') {
         delete node.attrs.type;
@@ -83,21 +83,23 @@ const transforms = {
     },
   },
   style: {
-    transform: async (node, data) => {
+    transform: (node, data) => {
       delete node.attrs.href;
       delete node.attrs.rel;
       node.tag = 'style';
       if (data.from in cache.styles) {
         node.content = cache.styles[data.from];
       } else {
-        node.content = csso.minify(
-          await postcss([
-            postcssImport(),
-            autoprefixer(),
-            postcssURL({ url: 'inline' }),
-          ]).process(data.buffer.toString('utf8'), { from: data.from }),
-        ).css;
-        cache.styles[data.from] = node.content;
+        return postcss([
+          postcssImport(),
+          autoprefixer(),
+          postcssURL({ url: 'inline' }),
+        ])
+          .process(data.buffer.toString('utf8'), { from: data.from })
+          .then(output => {
+            node.content = csso.minify(output.css).css;
+            cache.styles[data.from] = node.content;
+          });
       }
     },
   },
