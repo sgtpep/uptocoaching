@@ -22,7 +22,7 @@
 }
 
 .header a:hover {
-  border-bottom: none;
+  border-bottom-color: transparent;
 }
 
 .header-languages {

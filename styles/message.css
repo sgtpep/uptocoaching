@@ -12,7 +12,7 @@
   z-index: 1000;
 }
 .message > a:hover {
-  border-bottom: none;
+  border-bottom-color: transparent;
 }
 .message.is-active > a {
   background-color: white;
@@ -96,5 +96,5 @@
   width: 40px;
 }
 .message > .feedback > a[onclick]:hover {
-  border-bottom: none;
+  border-bottom-color: transparent;
 }
