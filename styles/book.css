@@ -27,3 +27,9 @@
   right: 0;
   text-align: center;
 }
+
+.book + noscript > p {
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+}
