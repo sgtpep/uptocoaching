@@ -5,6 +5,7 @@
 @import 'headings.css';
 @import 'no-list.css';
 
+@import 'book.css';
 @import 'button.css';
 @import 'contacts.css';
 @import 'cover.css';
@@ -18,4 +19,3 @@
 @import 'landing-themes.css';
 @import 'message.css';
 @import 'review.css';
-@import 'youcanbookme.css';

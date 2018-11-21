@@ -1,0 +1,15 @@
+.book > h1 {
+  left: 0;
+  margin-top: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  position: absolute;
+  right: 0;
+}
+
+.book > iframe {
+  border: none;
+  display: block;
+  height: 1000px;
+  width: 100%;
+}

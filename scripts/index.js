@@ -9,4 +9,4 @@ navigationActivation(
   document.querySelector('.header'),
 );
 pageJumps(document.querySelector('.header'));
-youcanbookme(document.querySelector('.youcanbookme'));
+youcanbookme(document.querySelector('.book > iframe'));
