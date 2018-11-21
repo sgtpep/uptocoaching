@@ -5,4 +5,7 @@ export default element => {
       element.style.height = `${event.data - 100}px`;
     }
   });
+  element.addEventListener('load', () => {
+    element.previousElementSibling.style.display = 'none';
+  });
 };
