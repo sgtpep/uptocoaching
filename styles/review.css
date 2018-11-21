@@ -59,12 +59,12 @@
   }
 }
 
-.review header > h3 {
+.review > div > header > h3 {
   font-size: inherit;
   margin-bottom: 5px;
 }
 
-.review header > p {
+.review > div > header > p {
   color: #666;
   margin-top: 5px;
 }
