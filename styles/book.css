@@ -1,10 +1,15 @@
 .book > h1 {
-  left: 0;
-  margin-top: 20px;
+  font-size: 30px;
   padding-left: 30px;
   padding-right: 30px;
-  position: absolute;
-  right: 0;
+}
+@media (min-width: 480px) {
+  .book > h1 {
+    left: 0;
+    margin-top: 20px;
+    position: absolute;
+    right: 0;
+  }
 }
 
 .book > iframe {
