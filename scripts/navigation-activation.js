@@ -15,9 +15,11 @@ const onScroll = (anchors, header, elements) => {
 };
 
 export default (anchors, header) => {
-  const elements = document.querySelectorAll(
-    [...anchors].map(anchor => anchor.hash).join(', '),
-  );
-  addEventListener('scroll', () => onScroll(anchors, header, elements));
-  onScroll(anchors, header, elements);
+  if (getComputedStyle(header).position === 'fixed') {
+    const elements = document.querySelectorAll(
+      [...anchors].map(anchor => anchor.hash).join(', '),
+    );
+    addEventListener('scroll', () => onScroll(anchors, header, elements));
+    onScroll(anchors, header, elements);
+  }
 };
