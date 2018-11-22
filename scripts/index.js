@@ -1,18 +1,18 @@
+import activateNavigation from './activate-navigation.js';
 import decodeProperties from './decode-properties.js';
-import navigationActivation from './navigation-activation.js';
-import pageJumps from './page-jumps.js';
-import youcanbookme from './youcanbookme.js';
-
-decodeProperties();
+import initializeYoucanbookMe from './initialize-youcanbook-me.js';
+import offsetPageJumps from './offset-page-jumps.js';
 
 const header = document.querySelector('.header');
-navigationActivation(
+activateNavigation(
   document.querySelectorAll('.header-navigation a[href*="#"]'),
   header,
 );
-pageJumps(header);
+offsetPageJumps(header);
+
+decodeProperties();
 
 const booking = document.querySelector('.book > iframe');
 if (booking) {
-  youcanbookme(booking);
+  initializeYoucanbookMe(booking);
 }
