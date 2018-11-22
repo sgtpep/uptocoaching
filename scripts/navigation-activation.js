@@ -1,10 +1,10 @@
 const onScroll = (anchors, header, elements) => {
-  const bodyTop = document.body.getBoundingClientRect().top;
+  const { top } = document.body.getBoundingClientRect();
   const element = [...elements].find(element => {
     const rect = element.getBoundingClientRect();
     return (
-      pageYOffset >= rect.top - bodyTop - header.offsetHeight - 10 &&
-      pageYOffset <= rect.bottom - bodyTop - header.offsetHeight
+      pageYOffset >= rect.top - top - header.offsetHeight - 10 &&
+      pageYOffset <= rect.bottom - top - header.offsetHeight
     );
   });
   [...anchors].forEach(anchor =>
