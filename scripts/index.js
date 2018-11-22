@@ -1,9 +1,9 @@
-import encodedData from './encoded-data.js';
+import decodeProperties from './decode-properties.js';
 import navigationActivation from './navigation-activation.js';
 import pageJumps from './page-jumps.js';
 import youcanbookme from './youcanbookme.js';
 
-encodedData();
+decodeProperties();
 
 const header = document.querySelector('.header');
 navigationActivation(
