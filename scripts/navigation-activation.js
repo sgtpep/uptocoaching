@@ -1,8 +1,11 @@
 const onScroll = (anchors, header, elements) => {
   const bodyTop = document.body.getBoundingClientRect().top;
   const element = [...elements].find(element => {
-    const top = element.getBoundingClientRect().top - bodyTop;
-    return pageYOffset >= top - header.offsetHeight - 10 && pageYOffset <= top;
+    const rect = element.getBoundingClientRect();
+    return (
+      pageYOffset >= rect.top - bodyTop - header.offsetHeight - 10 &&
+      pageYOffset <= rect.bottom - bodyTop - header.offsetHeight
+    );
   });
   [...anchors].forEach(anchor =>
     element && anchor.hash == `#${element.id}`
