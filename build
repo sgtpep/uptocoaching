@@ -51,6 +51,14 @@ const main = () =>
     }
   });
 
+const meta = directory =>
+  Object.assign(
+    { title: title(directory) },
+    fs.existsSync(metaPath(directory))
+      ? JSON.parse(fs.readFileSync(metaPath(directory)))
+      : {},
+  );
+
 const metaPath = directory => path.join(directory, 'meta.json');
 
 const options = directory =>
@@ -59,10 +67,15 @@ const options = directory =>
     : options => options)({
     base: path.relative(directory, __dirname) || '.',
     directory,
-    meta: fs.existsSync(metaPath(directory))
-      ? JSON.parse(fs.readFileSync(metaPath(directory)))
-      : {},
+    meta: meta(directory),
     page: path.relative(__dirname, path.join(directory, '-')).replace(/-$/, ''),
   });
+
+const title = directory =>
+  fs.existsSync(bodyPath(directory))
+    ? (fs
+        .readFileSync(bodyPath(directory), 'utf8')
+        .match(/<\s*h1(?:|\s.*?)>(.*?)<\s*\/\s*h1\s*>/is) || [])[1]
+    : undefined;
 
 main();
