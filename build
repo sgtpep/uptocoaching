@@ -1,12 +1,29 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const path = require('path');
 const child_process = require('child_process');
+const footer = require('./lib/footer');
+const fs = require('fs');
+const header = require('./lib/header');
+const path = require('path');
+
+const bodyPath = directory => path.join(directory, 'body.html');
 
 const build = directory =>
-  require([`./${path.join(directory, 'build.js')}`, './lib/build.js'].find(
-    module => fs.existsSync(module),
-  ))(directory);
+  fs.existsSync(buildPath(directory))
+    ? require(`./${buildPath(directory)}`)(options(directory))
+    : buildDefault(options(directory));
+
+const buildDefault = options =>
+  fs.existsSync(bodyPath(options.directory))
+    ? [
+        header(options),
+        fs.readFileSync(bodyPath(options.directory), 'utf8'),
+        footer(options),
+      ]
+        .map(text => text.trim())
+        .join('\n')
+    : undefined;
+
+const buildPath = directory => path.join(directory, 'build.js');
 
 const directories = () =>
   process.argv.length > 2
@@ -32,6 +49,20 @@ const main = () =>
     if (html !== undefined) {
       fs.writeFileSync(path.join(directory, 'index.html'), html);
     }
+  });
+
+const metaPath = directory => path.join(directory, 'meta.json');
+
+const options = directory =>
+  (fs.existsSync('./lib/options.js')
+    ? require('./lib/options')
+    : options => options)({
+    base: path.relative(directory, __dirname) || '.',
+    directory,
+    meta: fs.existsSync(metaPath(directory))
+      ? JSON.parse(fs.readFileSync(metaPath(directory)))
+      : {},
+    page: path.relative(__dirname, path.join(directory, '-')).replace(/-$/, ''),
   });
 
 main();
