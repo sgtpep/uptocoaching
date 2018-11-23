@@ -4,11 +4,9 @@ const path = require('path');
 const child_process = require('child_process');
 
 const build = directory =>
-  require([
-    `./${path.join(directory, 'build.js')}`,
-    `./${path.join(directory.replace(/^\.\/ru($|\/)/, ''), 'build.js')}`,
-    './lib/build.js',
-  ].find(module => fs.existsSync(module)))(directory);
+  require([`./${path.join(directory, 'build.js')}`, './lib/build.js'].find(
+    module => fs.existsSync(module),
+  ))(directory);
 
 const directories = () =>
   process.argv.length > 2
