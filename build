@@ -3,6 +3,13 @@ const fs = require('fs');
 const path = require('path');
 const child_process = require('child_process');
 
+const build = directory =>
+  require([
+    `./${path.join(directory, 'build.js')}`,
+    `./${path.join(directory.replace(/^\.\/ru($|\/)/, ''), 'build.js')}`,
+    './lib/build.js',
+  ].find(module => fs.existsSync(module)))(directory);
+
 const directories = () =>
   process.argv.length > 2
     ? process.argv.slice(2)
@@ -21,16 +28,9 @@ const directories = () =>
         .stdout.split('\n')
         .slice(0, -1);
 
-const layout = directory =>
-  require([
-    `./${path.join(directory, 'layout.js')}`,
-    `./${path.join(directory.replace(/^\.\/ru($|\/)/, ''), 'layout.js')}`,
-    './lib/layout.js',
-  ].find(module => fs.existsSync(module)))(directory);
-
 const main = () =>
   directories().forEach(directory => {
-    const html = layout(directory);
+    const html = build(directory);
     if (html !== undefined) {
       fs.writeFileSync(path.join(directory, 'index.html'), html);
     }
