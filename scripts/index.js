@@ -5,8 +5,8 @@ import offsetPageJumps from './offset-page-jumps.js';
 
 const header = document.querySelector('.header');
 activateNavigation(
-  document.querySelectorAll('.header-navigation a[href*="#"]'),
   header,
+  document.querySelectorAll('.header-navigation a[href*="#"]'),
 );
 offsetPageJumps(header);
 

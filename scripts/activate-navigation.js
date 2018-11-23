@@ -1,4 +1,4 @@
-const onScroll = (anchors, header, elements) => {
+const onScroll = (header, anchors, elements) => {
   const { top } = document.body.getBoundingClientRect();
   const element = [...elements].find(element => {
     const rect = element.getBoundingClientRect();
@@ -14,12 +14,12 @@ const onScroll = (anchors, header, elements) => {
   );
 };
 
-export default (anchors, header) => {
+export default (header, anchors) => {
   if (getComputedStyle(header).position === 'fixed') {
     const elements = document.querySelectorAll(
       [...anchors].map(anchor => anchor.hash).join(', '),
     );
-    addEventListener('scroll', () => onScroll(anchors, header, elements));
-    onScroll(anchors, header, elements);
+    addEventListener('scroll', () => onScroll(header, anchors, elements));
+    onScroll(header, anchors, elements);
   }
 };
