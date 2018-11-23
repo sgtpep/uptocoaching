@@ -1,15 +1,8 @@
 const onHash = header => {
-  if (location.hash) {
+  if (getComputedStyle(header).position === 'fixed' && location.hash) {
     const element = document.querySelector(location.hash);
     if (element) {
-      scrollTo(
-        0,
-        element.getBoundingClientRect().top -
-          document.body.getBoundingClientRect().top -
-          (getComputedStyle(header).position === 'fixed'
-            ? header.offsetHeight
-            : 0),
-      );
+      scrollBy(0, -header.offsetHeight);
     }
   }
 };
