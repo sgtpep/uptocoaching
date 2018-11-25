@@ -1,6 +1,7 @@
 @import '../node_modules/normalize.css/normalize.css';
 @import 'anchor.css';
 @import 'box-sizing.css';
+@import 'break-words.css';
 @import 'font.css';
 @import 'headings.css';
 @import 'no-list.css';
