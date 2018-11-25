@@ -19,7 +19,8 @@
   width: 25px;
 }
 
-.hero::before {
+.hero::before,
+.hero > .parallax::before {
   background-image: -webkit-linear-gradient(
     top,
     rgba(0, 0, 0, 0.5),

@@ -1,4 +1,5 @@
 .cover {
   background: center / cover no-repeat fixed;
   height: 100vh;
+  position: relative;
 }
