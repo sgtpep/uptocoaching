@@ -1,6 +1,6 @@
 import activateNavigation from './activate-navigation.js';
 import decodeProperties from './decode-properties.js';
-import offsetPageJumps from './offset-page-jumps.js';
+import pageJumps from './page-jumps.js';
 import youcanbookMe from './youcanbook-me.js';
 
 const header = document.querySelector('.header');
@@ -8,7 +8,7 @@ activateNavigation(
   header,
   document.querySelectorAll('.header-navigation a[href*="#"]'),
 );
-offsetPageJumps(header);
+pageJumps(header);
 
 decodeProperties();
 
