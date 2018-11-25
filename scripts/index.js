@@ -1,7 +1,7 @@
 import activateNavigation from './activate-navigation.js';
 import decodeProperties from './decode-properties.js';
-import initializeYoucanbookMe from './initialize-youcanbook-me.js';
 import offsetPageJumps from './offset-page-jumps.js';
+import youcanbookMe from './youcanbook-me.js';
 
 const header = document.querySelector('.header');
 activateNavigation(
@@ -14,5 +14,5 @@ decodeProperties();
 
 const booking = document.querySelector('.book > iframe');
 if (booking) {
-  initializeYoucanbookMe(booking);
+  youcanbookMe(booking);
 }
