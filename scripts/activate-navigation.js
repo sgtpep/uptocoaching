@@ -14,12 +14,28 @@ const onScroll = (header, anchors, elements) => {
   );
 };
 
+const throttle = (callback, delay) => {
+  let throttling = false;
+  return function(...args) {
+    if (!throttling) {
+      throttling = true;
+      setTimeout(() => {
+        throttling = false;
+      }, delay);
+      callback.apply(this, args);
+    }
+  };
+};
+
 export default (header, anchors) => {
   if (getComputedStyle(header).position === 'fixed') {
     const elements = document.querySelectorAll(
       [...anchors].map(anchor => anchor.hash).join(', '),
     );
-    addEventListener('scroll', () => onScroll(header, anchors, elements));
+    addEventListener(
+      'scroll',
+      throttle(() => onScroll(header, anchors, elements), 100),
+    );
     onScroll(header, anchors, elements);
   }
 };
