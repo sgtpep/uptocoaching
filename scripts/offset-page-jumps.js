@@ -9,5 +9,5 @@ const onHash = header => {
 
 export default header => {
   addEventListener('hashchange', () => onHash(header));
-  addEventListener('load', () => onHash(header));
+  setTimeout(() => onHash(header));
 };
