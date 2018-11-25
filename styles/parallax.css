@@ -1,9 +1,14 @@
 .parallax {
   background: center / cover no-repeat fixed;
-  bottom: 0;
+  height: 200%;
   left: 0;
   position: absolute;
   right: 0;
-  top: 0;
-  z-index: -1;
+  top: -50%;
+  z-index: -1000;
+}
+
+.parallax-container {
+  overflow: hidden;
+  position: relative;
 }
