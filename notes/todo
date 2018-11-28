@@ -1,6 +1,7 @@
-frontend checklist
+https://frontendchecklist.io/
 test on big widths
 optimize images
+  favicon.png
+    32x32
+    <link href="assets/favicon.png" rel="icon">
   google lighthouse
-  webpagetest.org
-srcset
