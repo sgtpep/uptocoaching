@@ -1,3 +1,7 @@
+variables
+  color
+  transpile
+
 google lighthouse
   mobile/desktop
   bandwidths
