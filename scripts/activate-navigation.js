@@ -9,8 +9,8 @@ const onScroll = (header, anchors, elements) => {
   });
   [...anchors].forEach(anchor =>
     element && anchor.hash == `#${element.id}`
-      ? anchor.classList.add('active')
-      : anchor.classList.remove('active'),
+      ? anchor.classList.add('is-active')
+      : anchor.classList.remove('is-active'),
   );
 };
 
