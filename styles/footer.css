@@ -15,3 +15,7 @@
 .footer > p:last-child {
   margin-bottom: 0;
 }
+
+.footer a {
+  color: #79b027;
+}

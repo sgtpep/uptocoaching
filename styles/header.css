@@ -81,9 +81,9 @@
   color: black;
   position: relative;
 }
-.header-menu > li > a:hover,
-.header-menu > li > a.active {
-  color: #6ea023;
+.header-menu > li > a.is-active,
+.header-menu > li > a:hover {
+  color: #567d1c;
 }
 
 .header-menu > li > a::after {
