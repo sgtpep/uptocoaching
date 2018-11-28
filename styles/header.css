@@ -97,7 +97,8 @@
   transition: bottom 0.3s, opacity 0.3s;
   width: 100%;
 }
-.header-menu > li > a:hover::after {
+.header-menu > li > a:hover::after,
+.header-menu:not(.header-languages) > li > a.is-active::after {
   bottom: -1px;
   opacity: 1;
 }
