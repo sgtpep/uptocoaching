@@ -1,10 +1,43 @@
-https://frontendchecklist.io/
 test on big widths
-optimize images
-  favicon.png
-    32x32
-    <link href="assets/favicon.png" rel="icon">
-  google lighthouse
 css variables
   review styles
   transpile
+a meta description is provided, it is unique and doesn't possess more than 150 characters <meta name="description" content="Description of the page less than 150 characters">
+favicon.png 32x32 <link href="assets/favicon.png" rel="icon">
+<link href="path" rel="canonical">
+<link href="url_of_page" hreflang="lang_code" rel="alternate"> https://support.google.com/webmasters/answer/189077?hl=en
+  hreflang="x-default"
+facebook open graph
+  https://frontendchecklist.io/
+  https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started.html#twitter-cards-and-open-graph
+  test in facebook
+  test in twitter
+semantic html
+  header, section, footer, main
+  https://htmlreference.io/
+404 https://help.github.com/articles/creating-a-custom-404-page-for-your-github-pages-site/
+validate
+  https://validator.w3.org/
+  https://validator.w3.org/checklink
+  https://jigsaw.w3.org/css-validator/
+lint
+  html
+  css
+  js
+  ./lint
+test with adblockers
+print stylesheet
+optimize images
+  try google lighthouse
+inline svg instead of base64
+img[height][width]
+http://wave.webaim.org/
+https://tools.pingdom.com/
+minify html
+https://developers.google.com/speed/pagespeed/insights/
+https://testmysite.withgoogle.com/intl/en-gb
+https://gtmetrix.com/
+sitemap.xml
+  https://websiteseochecker.com/html-sitemap-generator/
+  google search console
+structured data https://frontendchecklist.io/
