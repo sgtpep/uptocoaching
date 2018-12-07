@@ -1,4 +1,4 @@
-const onScroll = (header, anchors, elements) => {
+const activate = (header, anchors, elements) => {
   const { top } = document.body.getBoundingClientRect();
   const element = [...elements].find(element => {
     const rect = element.getBoundingClientRect();
@@ -34,8 +34,8 @@ export default (header, anchors) => {
     );
     addEventListener(
       'scroll',
-      throttle(() => onScroll(header, anchors, elements), 100),
+      throttle(() => activate(header, anchors, elements), 100),
     );
-    onScroll(header, anchors, elements);
+    activate(header, anchors, elements);
   }
 };

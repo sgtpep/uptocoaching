@@ -1,4 +1,4 @@
-const onScroll = elements => {
+const offset = elements => {
   const { top } = document.body.getBoundingClientRect();
   elements.forEach(element =>
     ['msTransform', 'transform', 'webkitTransform'].forEach(property => {
@@ -23,7 +23,7 @@ export default elements => {
     element.parentElement.classList.add('parallax-container'),
   );
   addEventListener('scroll', () =>
-    requestAnimationFrame(() => onScroll(elements)),
+    requestAnimationFrame(() => offset(elements)),
   );
-  onScroll(elements);
+  offset(elements);
 };

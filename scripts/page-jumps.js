@@ -1,4 +1,4 @@
-const onHash = header => {
+const scroll = header => {
   if (getComputedStyle(header).position === 'fixed' && location.hash) {
     const element = document.querySelector(location.hash);
     if (element) {
@@ -8,6 +8,6 @@ const onHash = header => {
 };
 
 export default header => {
-  addEventListener('hashchange', () => onHash(header));
-  setTimeout(() => onHash(header));
+  addEventListener('hashchange', () => scroll(header));
+  setTimeout(() => scroll(header));
 };
