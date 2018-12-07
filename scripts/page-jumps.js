@@ -1,9 +1,10 @@
 const scroll = header => {
-  if (getComputedStyle(header).position === 'fixed' && location.hash) {
-    const element = document.querySelector(location.hash);
-    if (element) {
-      scrollBy(0, -header.offsetHeight);
-    }
+  if (
+    getComputedStyle(header).position === 'fixed' &&
+    location.hash &&
+    document.querySelector(location.hash)
+  ) {
+    scrollBy(0, -header.offsetHeight);
   }
 };
 
