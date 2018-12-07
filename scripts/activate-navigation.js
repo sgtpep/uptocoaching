@@ -1,14 +1,14 @@
-const activate = (header, anchors, elements) => {
+const activate = (header, anchors, targets) => {
   const { top } = document.body.getBoundingClientRect();
-  const element = [...elements].find(element => {
-    const rect = element.getBoundingClientRect();
+  const target = [...targets].find(target => {
+    const rect = target.getBoundingClientRect();
     return (
       pageYOffset >= rect.top - top - header.offsetHeight - 10 &&
       pageYOffset <= rect.bottom - top - header.offsetHeight
     );
   });
   [...anchors].forEach(anchor =>
-    element && anchor.hash == `#${element.id}`
+    target && anchor.hash == `#${target.id}`
       ? anchor.classList.add('is-active')
       : anchor.classList.remove('is-active'),
   );
@@ -29,13 +29,13 @@ const throttle = (callback, delay) => {
 
 export default (header, anchors) => {
   if (getComputedStyle(header).position === 'fixed') {
-    const elements = document.querySelectorAll(
+    const targets = document.querySelectorAll(
       [...anchors].map(anchor => anchor.hash).join(', '),
     );
     addEventListener(
       'scroll',
-      throttle(() => activate(header, anchors, elements), 100),
+      throttle(() => activate(header, anchors, targets), 100),
     );
-    activate(header, anchors, elements);
+    activate(header, anchors, targets);
   }
 };
