@@ -1,11 +1,11 @@
-export default element => {
-  element.style.height = '593px';
-  element.addEventListener('load', () => {
-    element.previousElementSibling.style.display = 'none';
+export default frame => {
+  frame.style.height = '593px';
+  frame.addEventListener('load', () => {
+    frame.previousElementSibling.style.display = 'none';
   });
   addEventListener('message', event => {
-    if (event.origin === 'https://uptocoaching.youcanbook.me') {
-      element.style.height = `${event.data - 100}px`;
+    if (frame.src.startsWith(event.origin)) {
+      frame.style.height = `${event.data - 100}px`;
     }
   });
 };
