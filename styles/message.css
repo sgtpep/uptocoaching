@@ -86,7 +86,6 @@
 }
 
 .message > .feedback > a[onclick] {
-  color: inherit;
   font-size: 40px;
   line-height: 40px;
   position: absolute;
