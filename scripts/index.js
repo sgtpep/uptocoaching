@@ -1,8 +1,8 @@
 import activateNavigation from './activate-navigation.js';
-import animateParallaxes from './animate-parallaxes.js';
 import decodeProperties from './decode-properties.js';
 import offsetPageJumps from './offset-page-jumps.js';
-import resizeYoucanbookMe from './resize-youcanbook-me.js';
+import parallaxScrolling from './parallax-scrolling.js';
+import youcanbookMe from './youcanbook-me.js';
 
 const header = document.querySelector('.header');
 activateNavigation(
@@ -11,10 +11,10 @@ activateNavigation(
 );
 offsetPageJumps(header);
 
-animateParallaxes(document.querySelectorAll('.parallax'));
 decodeProperties();
+parallaxScrolling(document.querySelectorAll('.parallax'));
 
-const youcanbookMe = document.querySelector('.book > iframe');
-if (youcanbookMe) {
-  resizeYoucanbookMe(youcanbookMe);
+const frame = document.querySelector('.book > iframe');
+if (frame) {
+  youcanbookMe(frame);
 }
