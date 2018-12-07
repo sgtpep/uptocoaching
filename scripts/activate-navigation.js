@@ -1,14 +1,14 @@
-const activate = (header, anchors, targets) => {
+const activate = (anchors, targets) => {
   const { top } = document.body.getBoundingClientRect();
   const target = [...targets].find(target => {
-    const rect = target.getBoundingClientRect();
+    const offset = target.getBoundingClientRect().top - top;
     return (
-      pageYOffset >= rect.top - top - header.offsetHeight - 10 &&
-      pageYOffset <= rect.bottom - top - header.offsetHeight
+      pageYOffset >= offset - 10 &&
+      pageYOffset <= offset + target.nextElementSibling.offsetHeight
     );
   });
   [...anchors].forEach(anchor =>
-    target && anchor.hash == `#${target.id}`
+    target && anchor.hash == `#${target.name}`
       ? anchor.classList.add('is-active')
       : anchor.classList.remove('is-active'),
   );
@@ -27,15 +27,10 @@ const throttle = (callback, delay) => {
   };
 };
 
-export default (header, anchors) => {
-  if (getComputedStyle(header).position === 'fixed') {
-    const targets = document.querySelectorAll(
-      [...anchors].map(anchor => anchor.hash).join(', '),
-    );
-    addEventListener(
-      'scroll',
-      throttle(() => activate(header, anchors, targets), 100),
-    );
-    activate(header, anchors, targets);
-  }
+export default anchors => {
+  const targets = document.querySelectorAll(
+    [...anchors].map(anchor => `a[name="${anchor.hash.slice(1)}"]`).join(', '),
+  );
+  addEventListener('scroll', throttle(() => activate(anchors, targets), 100));
+  activate(anchors, targets);
 };

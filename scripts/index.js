@@ -4,7 +4,6 @@ import parallaxScrolling from './parallax-scrolling.js';
 import youcanbookMe from './youcanbook-me.js';
 
 activateNavigation(
-  document.querySelector('.header'),
   document.querySelectorAll('.header-navigation a[href*="#"]'),
 );
 decodeProperties();
