@@ -34,6 +34,11 @@
   z-index: -1;
 }
 
+.hero > h1,
+.hero > p {
+  text-shadow: black 0.02em 0.02em 5px;
+}
+
 .hero > h1 {
   font-size: 72px;
   margin-bottom: 30px;
