@@ -1,7 +1,19 @@
+lighthouse
+  https://developers.google.com/web/fundamentals/performance/user-centric-performance-metrics#first_paint_and_first_contentful_paint
+  https://developers.google.com/web/tools/lighthouse/audits/speed-index
+  https://developers.google.com/web/tools/lighthouse/audits/time-to-interactive
+  https://developers.google.com/web/tools/lighthouse/audits/first-meaningful-paint
+  https://developers.google.com/web/tools/lighthouse/audits/first-cpu-idle
+  https://developers.google.com/web/tools/lighthouse/audits/estimated-input-latency
+
 css variables
   review styles
   transpile
 
+test with adblockers
+print stylesheet
+img[height][width]
+minify html
 a meta description is provided, it is unique and doesn't possess more than 150 characters <meta name="description" content="Description of the page less than 150 characters">
 <link href="path" rel="canonical">
 <link href="url_of_page" hreflang="lang_code" rel="alternate"> https://support.google.com/webmasters/answer/189077?hl=en
@@ -11,30 +23,23 @@ facebook open graph
   https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started.html#twitter-cards-and-open-graph
   test in facebook
   test in twitter
-semantic html
-  header, section, footer, main
-  https://htmlreference.io/
 404 https://help.github.com/articles/creating-a-custom-404-page-for-your-github-pages-site/
+sitemap.xml
+  https://websiteseochecker.com/html-sitemap-generator/
+  google search console
+structured data https://frontendchecklist.io/
 validate
   https://validator.w3.org/
   https://validator.w3.org/checklink
   https://jigsaw.w3.org/css-validator/
+http://wave.webaim.org/
+https://tools.pingdom.com/
 lint
   html
   css
   js
   ./lint
-test with adblockers
-print stylesheet
-img[height][width]
-http://wave.webaim.org/
-https://tools.pingdom.com/
-minify html
-https://developers.google.com/speed/pagespeed/insights/
-https://testmysite.withgoogle.com/intl/en-gb
-https://gtmetrix.com/
-sitemap.xml
-  https://websiteseochecker.com/html-sitemap-generator/
-  google search console
-structured data https://frontendchecklist.io/
+semantic html
+  header, section, footer, main
+  https://htmlreference.io/
 fonts https://news.ycombinator.com/item?id=18588069
