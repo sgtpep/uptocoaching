@@ -15,6 +15,7 @@ const rollupNodeResolve = require('rollup-plugin-node-resolve');
 const UglifyJS = require('uglify-js');
 
 const cache = { scripts: {}, styles: {} };
+const styles = [];
 
 const filterMime = (mime, file) =>
   file.endsWith('.svg') ? 'image/svg+xml' : mime;
@@ -73,7 +74,13 @@ const processHTML = index =>
     }),
   ])
     .process(fs.readFileSync(index))
-    .then(result => fs.writeFileSync(index, result.html));
+    .then(result => {
+      fs.writeFileSync(
+        index,
+        result.html.replace('</html>', `<style>${styles.join('')}</style>$&`),
+      );
+      styles.length = 0;
+    });
 
 const resolveBackgroundImage = node =>
   node.attrs &&
@@ -99,20 +106,24 @@ const resolveStyle = node =>
   testURL(node.attrs.href);
 
 const transformBackgroundImage = (node, data) => {
+  styles.push(
+    `.-background-image${styles.length +
+      1}{background-image:url(data:${filterMime(
+      data.mime,
+      data.from,
+    )};base64,${data.buffer.toString('base64')})!important}`,
+  );
+  node.attrs.class = [
+    ...(node.attrs.class || '').split(' ').filter(Boolean),
+    `-background-image${styles.length}`,
+  ].join(' ');
   node.attrs.style = parseStyle(node.attrs.style)
-    .map(declaration =>
-      declaration[0] === 'background-image'
-        ? [
-            declaration[0],
-            `url(data:${filterMime(
-              data.mime,
-              data.from,
-            )};base64,${data.buffer.toString('base64')})`,
-          ]
-        : declaration,
-    )
+    .filter(declaration => declaration[0] !== 'background-image')
     .map(declaration => declaration.join(': '))
     .join('; ');
+  if (!node.attrs.style) {
+    delete node.attrs.style;
+  }
 };
 
 const testURL = url => /^(https?:|)\/\//.test(url) || url;
