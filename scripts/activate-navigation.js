@@ -9,8 +9,8 @@ const activate = (anchors, targets) => {
   });
   [...anchors].forEach(anchor =>
     target && anchor.hash == `#${target.name}`
-      ? anchor.classList.add('is-active')
-      : anchor.classList.remove('is-active'),
+      ? anchor.classList.add('active')
+      : anchor.classList.remove('active'),
   );
 };
 
