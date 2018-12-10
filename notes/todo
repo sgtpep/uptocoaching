@@ -1,5 +1,4 @@
 resize images
-  favicon.png 32x32 <link href="assets/favicon.png" rel="icon">
   resize
   optimize
   load at the end
