@@ -18,7 +18,8 @@
   background-color: white;
 }
 
-.message > a > svg {
+.message > a > img,
+.message > a > span {
   bottom: 0;
   left: 0;
   margin: auto;
@@ -27,16 +28,17 @@
   top: 0;
   transition: opacity 0.3s, transform 0.3s;
 }
-.message > a > svg:first-child {
-  fill: white;
+.message > a > img {
   top: 5px;
-  width: 28px;
+  width: 30px;
 }
-.message > a > svg:last-child {
-  width: 18px;
+.message > a > span {
+  font-size: 40px;
+  line-height: 60px;
+  text-align: center;
 }
-.message.active > a > svg:first-child,
-.message:not(.active) > a > svg:last-child {
+.message.active > a > img,
+.message:not(.active) > a > span {
   opacity: 0;
   transform: scale(0.1);
 }
