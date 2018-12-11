@@ -7,8 +7,3 @@
   top: -50%;
   z-index: -1000;
 }
-
-.parallax-container {
-  overflow: hidden;
-  position: relative;
-}

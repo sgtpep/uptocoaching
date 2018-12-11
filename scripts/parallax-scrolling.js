@@ -19,9 +19,6 @@ const offset = elements => {
 };
 
 export default elements => {
-  [...elements].forEach(element =>
-    element.parentElement.classList.add('parallax-container'),
-  );
   addEventListener('scroll', () =>
     requestAnimationFrame(() => offset(elements)),
   );
