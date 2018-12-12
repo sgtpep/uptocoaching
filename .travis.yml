@@ -1,4 +1,4 @@
-before_deploy: rm -fr ./{.[!.]*,lib,node_modules,notes,package.json,scripts,styles,yarn.lock} && find -type f \( -executable -o -regex '.*/\(body\.html\|meta\.json\)' \) -delete && sed 's/\(<base href="*\)\./\1/' ./404/index.html > ./404.html && echo 'www.uptocoaching.com' > ./CNAME
+before_deploy: rm -fr ./{.[!.]*,lib,node_modules,notes,package.json,scripts,styles,yarn.lock} && find -type f \( -executable -o -regex '.*/\(body\.html\|meta\.json\)' \) -delete && sed 's/<base [^>]*/<base href=\//' ./404/index.html > ./404.html && echo 'www.uptocoaching.com' > ./CNAME
 language: node_js
 deploy:
   github_token:
