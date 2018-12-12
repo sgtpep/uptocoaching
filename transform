@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+const HTMLMinifier = require('html-minifier');
+const UglifyJS = require('uglify-js');
 const autoprefixer = require('autoprefixer');
 const child_process = require('child_process');
 const csso = require('csso');
@@ -12,7 +14,6 @@ const rollup = require('rollup');
 const rollupBabel = require('rollup-plugin-babel');
 const rollupCommonJS = require('rollup-plugin-commonjs');
 const rollupNodeResolve = require('rollup-plugin-node-resolve');
-const UglifyJS = require('uglify-js');
 
 const cache = { scripts: {}, styles: {} };
 
@@ -69,7 +70,23 @@ const processHTML = index =>
     }),
   ])
     .process(fs.readFileSync(index))
-    .then(result => fs.writeFileSync(index, result.html));
+    .then(result =>
+      fs.writeFileSync(
+        index,
+        HTMLMinifier.minify(result.html, {
+          collapseBooleanAttributes: true,
+          collapseWhitespace: true,
+          decodeEntities: true,
+          minifyCSS: true,
+          minifyJS: true,
+          minifyURLs: true,
+          preventAttributesEscaping: true,
+          removeAttributeQuotes: true,
+          removeComments: true,
+          removeOptionalTags: true,
+        }),
+      ),
+    );
 
 const resolveImage = node =>
   node.tag === 'img' && node.attrs && testURL(node.attrs.src);
