@@ -1,6 +1,4 @@
 a meta description is provided, it is unique and doesn't possess more than 150 characters <meta name="description" content="Description of the page less than 150 characters">
-<link href="url_of_page" hreflang="lang_code" rel="alternate"> https://support.google.com/webmasters/answer/189077?hl=en
-  hreflang="x-default"
 facebook open graph
   https://frontendchecklist.io/
   https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started.html#twitter-cards-and-open-graph
@@ -24,7 +22,6 @@ lint
 semantic html
   header, section, footer, main
   https://htmlreference.io/
-
 fonts https://news.ycombinator.com/item?id=18588069
 print stylesheet
 css variables
