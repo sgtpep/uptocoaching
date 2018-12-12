@@ -56,8 +56,6 @@ const minifyHTML = html =>
     collapseBooleanAttributes: true,
     collapseWhitespace: true,
     decodeEntities: true,
-    minifyCSS: true,
-    minifyJS: true,
     minifyURLs: true,
     preventAttributesEscaping: true,
     removeAttributeQuotes: true,
@@ -78,6 +76,14 @@ const processHTML = index =>
       errors: 'throw',
       transforms: {
         image: { resolve: resolveImage, transform: transformImage },
+        inlineScript: {
+          resolve: resolveInlineScript,
+          transform: transformInlineScript.bind(null, index),
+        },
+        inlineStyle: {
+          resolve: resolveInlineStyle,
+          transform: transformInlineStyle.bind(null, index),
+        },
         script: { resolve: resolveScript, transform: transformScript },
         style: { resolve: resolveStyle, transform: transformStyle },
       },
@@ -86,8 +92,58 @@ const processHTML = index =>
     .process(fs.readFileSync(index))
     .then(result => fs.writeFileSync(index, minifyHTML(result.html)));
 
+const processScript = (script, from, callback) => {
+  if (script in cache.scripts) {
+    callback(cache.scripts[script]);
+  } else {
+    return rollup
+      .rollup({
+        input: from,
+        plugins: [
+          rollupBabel({
+            ignore: ['./node_modules'],
+            presets: [['@babel/env', { useBuiltIns: 'usage' }]],
+          }),
+          rollupCommonJS(),
+          rollupNodeResolve(),
+          {
+            load: id => (id === from ? script : undefined),
+            resolveId: id => (id === from ? id : undefined),
+          },
+        ],
+      })
+      .then(bundle => bundle.generate({ format: 'iife' }))
+      .then(output => {
+        cache.scripts[script] = UglifyJS.minify(output.code).code;
+        callback(cache.scripts[script]);
+      });
+  }
+};
+
+const processStyle = (style, from, callback) => {
+  if (style in cache.styles) {
+    callback(cache.styles[style]);
+  } else {
+    return postcss([
+      postcssImport(),
+      autoprefixer(),
+      postcssURL({ url: 'inline' }),
+    ])
+      .process(style, { from })
+      .then(output => {
+        cache.styles[style] = csso.minify(output.css).css;
+        callback(cache.styles[style]);
+      });
+  }
+};
+
 const resolveImage = node =>
   node.tag === 'img' && node.attrs && testURL(node.attrs.src);
+
+const resolveInlineScript = node =>
+  node.tag === 'script' && (!node.attrs || !node.attrs.src) && __filename;
+
+const resolveInlineStyle = node => node.tag === 'style' && __filename;
 
 const resolveScript = node =>
   node.tag === 'script' && node.attrs && testURL(node.attrs.src);
@@ -107,50 +163,31 @@ const transformImage = (node, data) => {
   )};base64,${data.buffer.toString('base64')}`;
 };
 
+const transformInlineScript = (from, node, data) =>
+  processScript(node.content.join(''), from, output => {
+    node.content = output;
+  });
+
+const transformInlineStyle = (from, node, data) =>
+  processStyle(node.content.join(''), from, output => {
+    node.content = output;
+  });
+
 const transformScript = (node, data) => {
   delete node.attrs.src;
   delete node.attrs.type;
-  if (data.from in cache.scripts) {
-    node.content = cache.scripts[data.from];
-  } else {
-    return rollup
-      .rollup({
-        input: data.from,
-        plugins: [
-          rollupBabel({
-            ignore: ['./node_modules'],
-            presets: [['@babel/env', { useBuiltIns: 'usage' }]],
-          }),
-          rollupCommonJS(),
-          rollupNodeResolve(),
-        ],
-      })
-      .then(bundle => bundle.generate({ format: 'iife' }))
-      .then(output => {
-        node.content = UglifyJS.minify(output.code).code;
-        cache.scripts[data.from] = node.content;
-      });
-  }
+  return processScript(data.buffer.toString('utf8'), data.from, output => {
+    node.content = output;
+  });
 };
 
 const transformStyle = (node, data) => {
   delete node.attrs.href;
   delete node.attrs.rel;
   node.tag = 'style';
-  if (data.from in cache.styles) {
-    node.content = cache.styles[data.from];
-  } else {
-    return postcss([
-      postcssImport(),
-      autoprefixer(),
-      postcssURL({ url: 'inline' }),
-    ])
-      .process(data.buffer.toString('utf8'), { from: data.from })
-      .then(output => {
-        node.content = csso.minify(output.css).css;
-        cache.styles[data.from] = node.content;
-      });
-  }
+  return processStyle(data.buffer.toString('utf8'), data.from, output => {
+    node.content = output;
+  });
 };
 
 main();
