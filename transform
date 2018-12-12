@@ -51,6 +51,20 @@ const main = () =>
     Promise.resolve(),
   );
 
+const minifyHTML = html =>
+  HTMLMinifier.minify(html, {
+    collapseBooleanAttributes: true,
+    collapseWhitespace: true,
+    decodeEntities: true,
+    minifyCSS: true,
+    minifyJS: true,
+    minifyURLs: true,
+    preventAttributesEscaping: true,
+    removeAttributeQuotes: true,
+    removeComments: true,
+    removeOptionalTags: true,
+  });
+
 const parseStyle = style =>
   style
     .split(';')
@@ -70,23 +84,7 @@ const processHTML = index =>
     }),
   ])
     .process(fs.readFileSync(index))
-    .then(result =>
-      fs.writeFileSync(
-        index,
-        HTMLMinifier.minify(result.html, {
-          collapseBooleanAttributes: true,
-          collapseWhitespace: true,
-          decodeEntities: true,
-          minifyCSS: true,
-          minifyJS: true,
-          minifyURLs: true,
-          preventAttributesEscaping: true,
-          removeAttributeQuotes: true,
-          removeComments: true,
-          removeOptionalTags: true,
-        }),
-      ),
-    );
+    .then(result => fs.writeFileSync(index, minifyHTML(result.html)));
 
 const resolveImage = node =>
   node.tag === 'img' && node.attrs && testURL(node.attrs.src);
