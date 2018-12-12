@@ -54,7 +54,7 @@
   right: 0;
   text-align: center;
   top: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, transform 0.3s;
   visibility: hidden;
   z-index: 1000;
 }
@@ -65,13 +65,16 @@
 @media (min-width: 768px) {
   .message > .feedback {
     border-radius: 5px;
-    bottom: 100px;
+    bottom: 80px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
     left: auto;
     max-height: 78vh;
     max-width: 360px;
     right: 30px;
     top: auto;
+  }
+  .message.active > .feedback {
+    transform: translateY(-20px);
   }
 }
 
