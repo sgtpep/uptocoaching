@@ -1,4 +1,11 @@
-before_deploy: rm -fr ./{.[!.]*,lib,node_modules,notes,package.json,scripts,styles,yarn.lock} && find -type f \( -executable -o -regex '.*/\(body\.html\|meta\.json\)' \) -delete && echo 'www.uptocoaching.com' > ./CNAME && sed 's/<base [^>]*/<base href=\//' ./404/index.html > ./404.html && find -type f -name index.html -exec sed -i 's|%ABSOLUTE_BASE%|'https://"$(cat ./CNAME)"'/|g' {} +
+before_deploy: |
+  bash -eu -c '
+  rm -fr ./{.[!.]*,lib,node_modules,notes,package.json,scripts,styles,yarn.lock}
+  find -type f \( -executable -o -regex ".*/\(body\.html\|meta\.json\)" \) -delete
+  sed "s/<base [^>]*/<base href=\//" ./404/index.html > ./404.html
+  echo "www.uptocoaching.com" > ./CNAME
+  find -type f -name index.html -exec sed -i "s|%ABSOLUTE_BASE%|https://$(< ./CNAME)/|g" {} +
+  '
 language: node_js
 deploy:
   github_token:

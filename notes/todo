@@ -1,6 +1,3 @@
-travis
-  set -eu
-  multiline
 sitemap.xml
   https://websiteseochecker.com/html-sitemap-generator/
   google search console
