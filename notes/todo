@@ -1,8 +1,16 @@
 facebook open graph
-  https://frontendchecklist.io/
-  https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started.html#twitter-cards-and-open-graph
-  test in facebook
-  test in twitter
+  og:audio
+  og:locale
+  og:locale:alternate
+  https://opengraphcheck.com/result.php?url=https%3A%2F%2Fwww.uptocoaching.com%2F
+  https://opengraphcheck.com/result.php?url=https%3A%2F%2Fwww.uptocoaching.com%2Fru%2F
+  http://iframely.com/debug?uri=https%3A%2F%2Fwww.uptocoaching.com%2F
+  http://iframely.com/debug?uri=https%3A%2F%2Fwww.uptocoaching.com%2Fru%2F
+animate message box
+  animate disappearance
+travis
+  set -eu
+  multiline
 sitemap.xml
   https://websiteseochecker.com/html-sitemap-generator/
   google search console
