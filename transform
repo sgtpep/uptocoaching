@@ -77,12 +77,12 @@ const processHTML = index =>
       transforms: {
         image: { resolve: resolveImage, transform: transformImage },
         inlineScript: {
-          resolve: resolveInlineScript,
-          transform: transformInlineScript.bind(null, index),
+          resolve: resolveInlineScript.bind(null, index),
+          transform: transformInlineScript,
         },
         inlineStyle: {
-          resolve: resolveInlineStyle,
-          transform: transformInlineStyle.bind(null, index),
+          resolve: resolveInlineStyle.bind(null, index),
+          transform: transformInlineStyle,
         },
         script: { resolve: resolveScript, transform: transformScript },
         style: { resolve: resolveStyle, transform: transformStyle },
@@ -140,10 +140,10 @@ const processStyle = (style, from, callback) => {
 const resolveImage = node =>
   node.tag === 'img' && node.attrs && testURL(node.attrs.src);
 
-const resolveInlineScript = node =>
-  node.tag === 'script' && (!node.attrs || !node.attrs.src) && __filename;
+const resolveInlineScript = (index, node) =>
+  node.tag === 'script' && (!node.attrs || !node.attrs.src) && index;
 
-const resolveInlineStyle = node => node.tag === 'style' && __filename;
+const resolveInlineStyle = (index, node) => node.tag === 'style' && index;
 
 const resolveScript = node =>
   node.tag === 'script' && node.attrs && testURL(node.attrs.src);
@@ -163,13 +163,13 @@ const transformImage = (node, data) => {
   )};base64,${data.buffer.toString('base64')}`;
 };
 
-const transformInlineScript = (from, node, data) =>
-  processScript(node.content.join(''), from, output => {
+const transformInlineScript = (node, data) =>
+  processScript(node.content.join(''), data.from, output => {
     node.content = output;
   });
 
-const transformInlineStyle = (from, node, data) =>
-  processStyle(node.content.join(''), from, output => {
+const transformInlineStyle = (node, data) =>
+  processStyle(node.content.join(''), data.from, output => {
     node.content = output;
   });
 
