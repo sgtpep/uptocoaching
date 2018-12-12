@@ -1,11 +1,8 @@
+print stylesheet
 css variables
   review styles
   transpile
 
-test with adblockers
-print stylesheet
-img[height][width]
-minify html
 a meta description is provided, it is unique and doesn't possess more than 150 characters <meta name="description" content="Description of the page less than 150 characters">
 <link href="path" rel="canonical">
 <link href="url_of_page" hreflang="lang_code" rel="alternate"> https://support.google.com/webmasters/answer/189077?hl=en
