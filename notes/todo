@@ -1,22 +1,18 @@
-sitemap.xml
-  https://websiteseochecker.com/html-sitemap-generator/
-  google search console
-structured data https://frontendchecklist.io/
-validate
-  https://validator.w3.org/
-  https://validator.w3.org/checklink
-  https://jigsaw.w3.org/css-validator/
-http://wave.webaim.org/
-https://tools.pingdom.com/
 lint
   html
   css
   js
   ./lint
+validate
+  https://validator.w3.org/
+  https://validator.w3.org/checklink
+  https://jigsaw.w3.org/css-validator/
+  http://wave.webaim.org/
+  https://tools.pingdom.com/
 semantic html
   header, section, footer, main
   https://htmlreference.io/
-fonts https://news.ycombinator.com/item?id=18588069
+  lint, validate, lighthouse
 print stylesheet
 css variables
   review styles
