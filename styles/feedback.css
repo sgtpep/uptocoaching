@@ -1,3 +1,7 @@
+.feedback > h2 {
+  margin-top: 0;
+}
+
 .feedback > input,
 .feedback > textarea {
   border: 1px solid #c7c7c7;

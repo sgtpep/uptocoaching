@@ -1,0 +1,7 @@
+.interview {
+  text-align: center;
+}
+
+.interview > audio {
+  max-width: 100%;
+}

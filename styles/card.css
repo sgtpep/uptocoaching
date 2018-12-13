@@ -1,60 +1,70 @@
-.landing-card {
+.card {
   position: relative;
 }
 @media (min-width: 980px) {
-  .landing-card {
+  .card {
     font-size: 20px;
   }
 }
 @media (min-width: 1920px) {
-  .landing-card {
+  .card {
     margin-left: auto;
     margin-right: auto;
     max-width: 1920px;
   }
 }
 
-.landing-card > div:empty {
+.card > div:empty {
   background: center / cover no-repeat;
   padding-top: 100%;
 }
 @media (min-width: 980px) {
-  .landing-card > div:empty {
+  .card > div:empty {
     bottom: 0;
     padding-top: 0;
     position: absolute;
     top: 0;
     width: 50%;
   }
-  .landing-card:not(.mirrored) > div:empty {
+  .card:not(.mirrored) > div:empty {
     left: 0;
   }
-  .landing-card.mirrored > div:empty {
+  .card.mirrored > div:empty {
     right: 0;
   }
 }
 
-.landing-card > div:not(:empty) {
+.card > div:not(:empty) {
   padding: 30px;
 }
 @media (min-width: 980px) {
-  .landing-card > div:not(:empty) {
-    padding: 65px;
+  .card > div:not(:empty) {
+    padding: 60px;
     width: 50%;
   }
-  .landing-card:not(.mirrored) > div:not(:empty) {
+  .card:not(.mirrored) > div:not(:empty) {
     margin-left: 50%;
   }
-  .landing-card.mirrored > div:not(:empty) {
+  .card.mirrored > div:not(:empty) {
     margin-right: 50%;
   }
 }
 
-.landing-card > div > header > h2 {
-  text-align: left;
+.card h1:first-child,
+.card h2:first-child {
+  margin-top: 0;
 }
 
-.landing-card > div > header > p {
+.card h1,
+.card h2 {
+  font-size: 40px;
+}
+.card.mirrored h1,
+.card.mirrored h2 {
+  text-align: center;
+}
+
+.card header > p {
   color: #666;
-  margin-top: -35px;
+  margin-top: -30px;
 }

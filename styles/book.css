@@ -1,7 +1,8 @@
 .book > h1 {
   font-size: 25px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
 }
 
 .book > iframe {
