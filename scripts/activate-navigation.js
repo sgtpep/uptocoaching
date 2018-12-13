@@ -31,7 +31,6 @@ export default anchors => {
   const targets = document.querySelectorAll(
     [...anchors].map(anchor => anchor.hash).join(', '),
   );
-  console.log(targets);
   addEventListener('scroll', throttle(() => activate(anchors, targets), 100));
   activate(anchors, targets);
 };
