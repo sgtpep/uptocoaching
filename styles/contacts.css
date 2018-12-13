@@ -61,6 +61,6 @@
   color: white;
   padding: 20px;
 }
-a[name='thanks']:not(:target) + .contacts-thanks {
+#thanks:not(:target) + .contacts-thanks {
   display: none;
 }
