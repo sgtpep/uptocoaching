@@ -1,7 +1,3 @@
-html.no-script .booking {
-  display: none;
-}
-
 .booking > h1 {
   font-size: 25px;
   padding-left: 15px;
@@ -16,17 +12,23 @@ html.no-script .booking {
   overflow: hidden;
   width: 100%;
 }
+html.no-script .booking > iframe {
+  display: none;
+}
 
 .booking > p {
   font-size: 24px;
-  left: 0;
+  left: 15px;
   margin-top: 150px;
   position: absolute;
-  right: 0;
+  right: 15px;
   text-align: center;
 }
+html.no-script .booking > p {
+  display: none;
+}
 
-.booking + noscript > p {
+.booking > noscript > p {
   padding-left: 15px;
   padding-right: 15px;
   text-align: center;
