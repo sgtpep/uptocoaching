@@ -1,3 +1,9 @@
+.education > ul {
+  list-style: none;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: 0;
+}
 @media (min-width: 768px) {
   .education > ul {
     margin-left: auto;

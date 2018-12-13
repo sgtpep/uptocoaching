@@ -93,6 +93,12 @@
   font-size: 18px;
   font-weight: bold;
 }
+ul.header-menu {
+  list-style: none;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: 0;
+}
 
 .header-menu > li {
   display: inline-block;
