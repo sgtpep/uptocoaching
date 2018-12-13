@@ -1,18 +1,18 @@
-.book > h1 {
+.booking > h1 {
   font-size: 25px;
   padding-left: 15px;
   padding-right: 15px;
   text-align: center;
 }
 
-.book > iframe {
+.booking > iframe {
   border: none;
   display: block;
   height: 1000px;
   width: 100%;
 }
 
-.book > p {
+.booking > p {
   font-size: 24px;
   left: 0;
   margin-top: 150px;
@@ -21,7 +21,7 @@
   text-align: center;
 }
 
-.book + noscript > p {
+.booking + noscript > p {
   padding-left: 30px;
   padding-right: 30px;
   text-align: center;
