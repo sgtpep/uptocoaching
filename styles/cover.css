@@ -4,3 +4,8 @@
   overflow: hidden;
   position: relative;
 }
+@media print {
+  .cover {
+    display: none;
+  }
+}

@@ -1,3 +1,9 @@
+@media print {
+  .message {
+    display: none;
+  }
+}
+
 .message > a {
   background-color: #567d1c;
   border-radius: 50%;
