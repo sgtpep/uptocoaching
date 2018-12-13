@@ -1,7 +1,7 @@
 semantic html
   header, section, footer, main
   https://htmlreference.io/
-  lint, validate, lighthouse
+  validate, lighthouse
 review styles
 print stylesheet
 css variables
