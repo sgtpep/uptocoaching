@@ -1,9 +1,9 @@
 a {
-  border-bottom: 1px solid transparent;
   color: #567d1c;
-  cursor: pointer;
+}
+a:not(:hover) {
   text-decoration: none;
 }
-a:not(.button):hover {
-  border-bottom-color: currentcolor;
+a:not([href]) {
+  cursor: pointer;
 }

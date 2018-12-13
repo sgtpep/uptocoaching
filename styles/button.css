@@ -15,3 +15,6 @@
   background-color: white;
   color: #567d1c;
 }
+a.button:hover {
+  text-decoration: none;
+}
