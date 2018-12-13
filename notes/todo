@@ -1,9 +1,10 @@
-article
-section
 validate
 lighthouse
 
-review styles
+review
+  html
+  scripts
+  styles
 print stylesheet
 css variables
   review styles

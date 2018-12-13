@@ -14,50 +14,49 @@
   }
 }
 
-.card > div:empty {
+.card > div {
   background: center / cover no-repeat;
   padding-top: 100%;
 }
 @media (min-width: 980px) {
-  .card > div:empty {
+  .card > div {
     bottom: 0;
     padding-top: 0;
     position: absolute;
     top: 0;
     width: 50%;
   }
-  .card:not(.mirrored) > div:empty {
+  .card:not(.mirrored) > div {
     left: 0;
   }
-  .card.mirrored > div:empty {
+  .card.mirrored > div {
     right: 0;
   }
 }
 
-.card > div:not(:empty) {
+.card > section {
   padding: 30px;
 }
 @media (min-width: 980px) {
-  .card > div:not(:empty) {
+  .card > section {
     padding: 60px;
     width: 50%;
   }
-  .card:not(.mirrored) > div:not(:empty) {
+  .card:not(.mirrored) > section {
     margin-left: 50%;
   }
-  .card.mirrored > div:not(:empty) {
+  .card.mirrored > section {
     margin-right: 50%;
   }
-}
-
-.card h1:first-child,
-.card h2:first-child {
-  margin-top: 0;
 }
 
 .card h1,
 .card h2 {
   font-size: 40px;
+}
+.card h1:first-child,
+.card h2:first-child {
+  margin-top: 0;
 }
 .card.mirrored h1,
 .card.mirrored h2 {
