@@ -1,18 +1,16 @@
+replace csso with clean-css https://github.com/jakubpawlowicz/clean-css
+  compare size
+https://tools.pingdom.com/
 lint
   html
   css
   js
   ./lint
-validate
-  https://validator.w3.org/
-  https://validator.w3.org/checklink
-  https://jigsaw.w3.org/css-validator/
-  http://wave.webaim.org/
-  https://tools.pingdom.com/
 semantic html
   header, section, footer, main
   https://htmlreference.io/
   lint, validate, lighthouse
+review styles
 print stylesheet
 css variables
   review styles
