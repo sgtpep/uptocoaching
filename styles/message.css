@@ -3,6 +3,9 @@
     display: none;
   }
 }
+html.no-script .message {
+  display: none;
+}
 
 .message > a {
   background-color: #567d1c;

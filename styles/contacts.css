@@ -3,6 +3,9 @@
   margin-right: auto;
   max-width: 960px;
 }
+html.no-script .contacts {
+  display: none;
+}
 
 .contacts::after {
   clear: both;

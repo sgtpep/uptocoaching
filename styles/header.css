@@ -140,3 +140,7 @@
     padding-top: 0;
   }
 }
+
+html.no-script .header-script {
+  display: none !important;
+}

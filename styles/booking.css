@@ -1,3 +1,7 @@
+html.no-script .booking {
+  display: none;
+}
+
 .booking > h1 {
   font-size: 25px;
   padding-left: 15px;
