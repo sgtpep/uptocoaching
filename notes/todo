@@ -1,7 +1,12 @@
-semantic html
-  header, section, footer, main
-  https://htmlreference.io/
-  validate, lighthouse
+article
+main
+nav
+section
+header
+footer
+validate
+lighthouse
+
 review styles
 print stylesheet
 css variables
