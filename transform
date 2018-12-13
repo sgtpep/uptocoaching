@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-const HTMLMinifier = require('html-minifier');
 const UglifyJS = require('uglify-js');
 const autoprefixer = require('autoprefixer');
 const child_process = require('child_process');
@@ -51,18 +50,6 @@ const main = () =>
     Promise.resolve(),
   );
 
-const minifyHTML = html =>
-  HTMLMinifier.minify(html, {
-    collapseBooleanAttributes: true,
-    collapseWhitespace: true,
-    decodeEntities: true,
-    minifyURLs: true,
-    preventAttributesEscaping: true,
-    removeAttributeQuotes: true,
-    removeComments: true,
-    removeOptionalTags: true,
-  });
-
 const parseStyle = style =>
   style
     .split(';')
@@ -90,7 +77,7 @@ const processHTML = index =>
     }),
   ])
     .process(fs.readFileSync(index))
-    .then(result => fs.writeFileSync(index, minifyHTML(result.html)));
+    .then(result => fs.writeFileSync(index, result.html));
 
 const processScript = (script, from, callback) => {
   if (script in cache.scripts) {
