@@ -15,24 +15,24 @@
   display: block;
 }
 
-.review > div {
+.review > blockquote {
   background-color: white;
   border-radius: 5px;
   border: 1px solid transparent;
-  margin-left: 55px;
+  margin: 0 0 0 55px;
   padding-left: 20px;
   padding-right: 20px;
   position: relative;
 }
 @media (min-width: 640px) {
-  .review > div {
+  .review > blockquote {
     margin-left: 126px;
     padding-left: 25px;
     padding-right: 25px;
   }
 }
 
-.review > div::before {
+.review > blockquote::before {
   border: 5px solid white;
   content: '';
   left: -5px;
@@ -41,7 +41,7 @@
   transform: rotate(45deg);
 }
 @media (min-width: 640px) {
-  .review > div::before {
+  .review > blockquote::before {
     border-width: 10px;
     left: -10px;
     top: 40px;
@@ -61,10 +61,9 @@
 
 .review header > h3 {
   font-size: inherit;
-  margin-bottom: 5px;
 }
 
 .review header > p {
   color: #666;
-  margin-top: 5px;
+  margin-top: -15px;
 }
