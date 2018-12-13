@@ -1,11 +1,8 @@
-validate
-lighthouse
-
-review
-  html
-  scripts
-  styles
 print stylesheet
 css variables
   review styles
   transpile
+review
+  html
+  scripts
+  styles
