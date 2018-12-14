@@ -28,7 +28,7 @@
 }
 
 .header a:hover {
-  border-bottom-color: transparent;
+  text-decoration: none;
 }
 
 @media (min-width: 768px) {
