@@ -18,6 +18,7 @@ html.no-script .message {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
   display: inline-block;
   height: var(--button-size);
+  overflow: hidden;
   position: fixed;
   right: var(--button-offset);
   transition: background-color var(--transition-duration);
@@ -39,27 +40,26 @@ html.no-script .message {
   transition: opacity var(--transition-duration),
     transform var(--transition-duration);
 }
-.message > a > img {
-  top: calc(var(--button-size) / 12);
-  width: calc(var(--button-size) / 2);
-}
-.message > a > span {
-  font-size: calc(var(--button-size) / 1.5);
-  line-height: var(--button-size);
-  text-align: center;
-}
 .message.active > a > img,
 .message:not(.active) > a > span {
   opacity: 0;
   transform: scale(0.1);
 }
 
-.message > form {
+.message > a > img {
+  width: calc(var(--button-size) / 2);
+}
+
+.message > a > span {
+  font-size: calc(var(--button-size) / 1.5);
+  text-align: center;
+}
+
+.message > div {
   background-color: white;
   bottom: 0;
   left: 0;
   overflow: auto;
-  padding: var(--padding);
   position: fixed;
   right: 0;
   text-align: center;
@@ -68,12 +68,12 @@ html.no-script .message {
     transform var(--transition-duration), visibility var(--transition-duration);
   z-index: 1000;
 }
-.message:not(.active) > form {
+.message:not(.active) > div {
   opacity: 0;
   visibility: hidden;
 }
 @media (min-width: 640px) {
-  .message > form {
+  .message > div {
     border-radius: 0.5em;
     bottom: calc(var(--button-size) + var(--button-offset) * 2);
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
@@ -85,19 +85,23 @@ html.no-script .message {
     right: var(--button-offset);
     top: auto;
   }
-  .message:not(.active) > form {
+  .message:not(.active) > div {
     transform: translateY(var(--button-offset));
   }
 }
 
-.message > form > h2 {
+.message > div > form {
+  padding: var(--padding);
+}
+
+.message h2 {
   font-size: var(--large-font-size);
 }
-.message > form > h2:first-child {
+.message h2:first-child {
   margin-top: 0;
 }
 
-.message > form > h2 > a {
+.message h2 > a {
   --size: 40px;
   float: right;
   font-size: 1.75em;

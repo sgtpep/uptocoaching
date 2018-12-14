@@ -228,40 +228,42 @@
 </div>
 <div class="message">
   <a
-    onclick="this.parentElement.classList.toggle('active')"
+    onclick="document.querySelector('.message').classList.toggle('active')"
     title="Send a message"
   >
     <img alt="Message" src="images/icons/message.svg" /><span>×</span>
   </a>
-  <form
-    class="feedback"
-    data-encoded="eyJhY3Rpb24iOiJodHRwczovL2Zvcm1zcHJlZS5pby9rc2VuaWFAdXB0b2NvYWNoaW5nLmNvbSJ9"
-    method="post"
-  >
-    <h2>
-      <a
-        onclick="this.parentElement.parentElement.parentElement.classList.remove('active')"
-        title="Close"
-        >×</a
-      >
-      Do you have any questions? Contact me!
-    </h2>
-    <input name="_language" type="hidden" value="en" />
-    <input name="_next" type="hidden" value="#thanks" />
-    <input
-      aria-label="Email"
-      name="email"
-      placeholder="Email"
-      required
-      type="email"
-    />
-    <input aria-label="Name" name="name" placeholder="Name" required />
-    <textarea
-      aria-label="Message"
-      name="message"
-      placeholder="Message"
-      required
-    ></textarea>
-    <button class="button">Send</button>
-  </form>
+  <div>
+    <form
+      class="feedback"
+      data-encoded="eyJhY3Rpb24iOiJodHRwczovL2Zvcm1zcHJlZS5pby9rc2VuaWFAdXB0b2NvYWNoaW5nLmNvbSJ9"
+      method="post"
+    >
+      <h2>
+        <a
+          onclick="document.querySelector('.message').classList.remove('active')"
+          title="Close"
+          >×</a
+        >
+        Do you have any questions? Contact me!
+      </h2>
+      <input name="_language" type="hidden" value="en" />
+      <input name="_next" type="hidden" value="#thanks" />
+      <input
+        aria-label="Email"
+        name="email"
+        placeholder="Email"
+        required
+        type="email"
+      />
+      <input aria-label="Name" name="name" placeholder="Name" required />
+      <textarea
+        aria-label="Message"
+        name="message"
+        placeholder="Message"
+        required
+      ></textarea>
+      <button class="button">Send</button>
+    </form>
+  </div>
 </div>
