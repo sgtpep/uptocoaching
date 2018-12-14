@@ -1,5 +1,5 @@
 .cover {
-  background: center / cover no-repeat fixed;
+  background: var(--covering-background) fixed;
   height: 100vh;
   overflow: hidden;
   position: relative;

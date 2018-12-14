@@ -1,17 +1,11 @@
 .block {
   overflow: hidden;
-  padding: 30px 15px;
-}
-@media (min-width: 480px) {
-  .block {
-    padding-left: 30px;
-    padding-right: 30px;
-  }
+  padding: var(--padding);
 }
 
 .block > h1,
 .block > h2 {
-  font-size: 40px;
+  font-size: var(--landing-heading-font-size);
   text-align: center;
 }
 .block > h1:first-child,

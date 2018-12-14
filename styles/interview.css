@@ -5,3 +5,7 @@
 .interview > audio {
   max-width: 100%;
 }
+
+.interview > h2 {
+  font-size: var(--larger-font-size);
+}

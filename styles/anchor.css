@@ -1,5 +1,5 @@
 a {
-  color: #567d1c;
+  color: var(--color);
 }
 a:not(:hover) {
   text-decoration: none;

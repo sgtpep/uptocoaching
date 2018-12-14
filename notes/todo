@@ -1,8 +1,4 @@
-css variables
-  review styles
-  transpile
+transpile css variables
 review
   html
   scripts
-  styles
-    ul.foo > li

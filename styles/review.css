@@ -1,10 +1,13 @@
 .review {
-  font-size: 16px;
-  margin-bottom: 30px;
-  margin-top: 30px;
+  --border-radius: 0.3em;
+  --image-width: 3em;
+  font-size: var(--smaller-font-size);
+  margin-bottom: var(--vertical-padding);
+  margin-top: var(--vertical-padding);
 }
 @media (min-width: 640px) {
   .review {
+    --image-width: 5.5em;
     font-size: inherit;
   }
 }
@@ -17,53 +20,35 @@
 
 .review > blockquote {
   background-color: white;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   border: 1px solid transparent;
-  margin: 0 0 0 55px;
-  padding-left: 20px;
-  padding-right: 20px;
+  margin: 0 0 0 calc(var(--image-width) + 1.25em);
+  padding-left: 1.25em;
+  padding-right: 1.25em;
   position: relative;
-}
-@media (min-width: 640px) {
-  .review > blockquote {
-    margin-left: 126px;
-    padding-left: 25px;
-    padding-right: 25px;
-  }
 }
 
 .review > blockquote::before {
-  border: 5px solid white;
+  --size: 0.5em;
+  border: var(--size) solid white;
   content: '';
-  left: -5px;
+  left: calc(var(--size) * -1);
   position: absolute;
-  top: 20px;
+  top: calc((var(--image-width) - var(--size) * 2) / 2);
   transform: rotate(45deg);
-}
-@media (min-width: 640px) {
-  .review > blockquote::before {
-    border-width: 10px;
-    left: -10px;
-    top: 40px;
-  }
 }
 
 .review > img {
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   float: left;
-  width: 40px;
-}
-@media (min-width: 640px) {
-  .review > img {
-    width: 100px;
-  }
+  width: var(--image-width);
 }
 
 .review header > h3 {
   font-size: inherit;
 }
 
-.review header > p {
-  color: #666;
-  margin-top: -15px;
+.review header > h3 + p {
+  color: var(--muted-color);
+  margin-top: -1em;
 }

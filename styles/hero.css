@@ -1,22 +1,23 @@
 .hero {
-  background: center / cover no-repeat fixed;
+  background: var(--covering-background) fixed;
   color: white;
-  font-size: 24px;
+  font-size: var(--large-font-size);
   overflow: hidden;
-  padding: 30px;
+  padding: var(--padding);
   position: relative;
   text-align: center;
 }
 
 .hero::after {
+  --size: 1em;
   animation: hero-arrow 1.7s infinite ease;
   border-style: solid;
   border-width: 0 2px 2px 0;
   content: '';
   display: inline-block;
-  height: 25px;
+  height: var(--size);
   position: relative;
-  width: 25px;
+  width: var(--size);
 }
 
 .hero::before {
@@ -40,9 +41,7 @@
 }
 
 .hero > h1 {
-  font-size: 70px;
-  margin-bottom: 30px;
-  margin-top: 30px;
+  font-size: 3em;
 }
 
 @keyframes hero-arrow {
@@ -50,10 +49,10 @@
     transform: rotate(45deg) translate(0, 0);
   }
   50% {
-    transform: rotate(45deg) translate(-7px, -7px);
+    transform: rotate(45deg) translate(-10px, -10px);
   }
   55% {
-    transform: rotate(45deg) translate(-7px, -7px);
+    transform: rotate(45deg) translate(-10px, -10px);
   }
   100% {
     transform: rotate(45deg) translate(0, 0);

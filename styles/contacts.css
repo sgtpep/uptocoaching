@@ -1,7 +1,7 @@
 .contacts {
   margin-left: auto;
   margin-right: auto;
-  max-width: 960px;
+  max-width: var(--container-width);
 }
 html.no-script .contacts {
   display: none;
@@ -15,48 +15,51 @@ html.no-script .contacts {
 
 .contacts > address,
 .contacts > form {
-  margin-top: 30px;
+  text-align: center;
 }
-@media (min-width: 980px) {
+@media (min-width: 768px) {
   .contacts > address,
   .contacts > form {
     float: left;
+    margin-bottom: 0;
+    margin-top: 0;
     width: 50%;
+    text-align: left;
   }
 }
 
 .contacts > address {
-  font-size: 20px;
+  font-size: var(--larger-font-size);
   font-style: normal;
-  text-align: center;
+  margin-bottom: 1em;
 }
 @media (min-width: 480px) {
   .contacts > address {
-    font-size: 30px;
+    font-size: var(--large-font-size);
   }
 }
-@media (min-width: 980px) {
+@media (min-width: 768px) {
   .contacts > address {
-    text-align: inherit;
+    padding-right: 0.5em;
   }
 }
 
 .contacts > p {
-  font-size: 24px;
+  font-size: var(--large-font-size);
   margin-left: auto;
   margin-right: auto;
-  max-width: 560px;
+  max-width: 640px;
   text-align: center;
 }
 
 .contacts > p > .button {
-  font-size: 18px;
+  font-size: var(--font-size);
 }
 
 .contacts-thanks {
   background-color: #62c584;
   color: white;
-  padding: 20px;
+  padding: var(--padding);
 }
 #thanks:not(:target) + .contacts-thanks {
   display: none;

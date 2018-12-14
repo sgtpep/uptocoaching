@@ -1,5 +1,5 @@
 .themes > ul {
-  font-size: 20px;
+  font-size: var(--larger-font-size);
   list-style: none;
   margin: 0 auto;
   max-width: 768px;
@@ -13,23 +13,23 @@
 }
 
 .themes > ul > li {
-  margin-top: 10px;
-  padding-left: 65px;
-  padding-right: 10px;
+  --icon-size: 2.5em;
+  padding-left: calc(var(--icon-size) + 1em);
   position: relative;
 }
 @media (min-width: 768px) {
   .themes > ul > li {
     flex: 50%;
+    padding-right: 0.5em;
   }
 }
 .themes > ul > li:not(:last-child) {
-  margin-bottom: 40px;
+  margin-bottom: 2.5em;
 }
 
 .themes > ul > li > img {
-  height: 45px;
+  height: var(--icon-size);
   left: 0;
-  margin-top: -0.4em;
   position: absolute;
+  top: calc((var(--icon-size) - var(--line-height)) / -2);
 }

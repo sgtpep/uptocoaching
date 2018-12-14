@@ -1,0 +1,22 @@
+:root {
+  --color: #567d1c;
+  --container-width: 960px;
+  --covering-background: center / cover no-repeat;
+  --font-size: 18px;
+  --horizontal-padding: calc(var(--vertical-padding) / 2);
+  --landing-heading-font-size: 40px;
+  --large-font-size: 24px;
+  --larger-font-size: 20px;
+  --line-height: calc(var(--untitless-line-height) * 1em);
+  --muted-color: #666;
+  --padding: var(--vertical-padding) var(--horizontal-padding);
+  --smaller-font-size: 16px;
+  --transition-duration: 0.3s;
+  --untitless-line-height: 1.5;
+  --vertical-padding: 30px;
+}
+@media (min-width: 480px) {
+  :root {
+    --horizontal-padding: var(--vertical-padding);
+  }
+}

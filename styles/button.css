@@ -1,20 +1,27 @@
 .button {
-  background-color: #567d1c;
-  border-radius: 30px;
-  border: 2px solid #567d1c;
-  color: white;
-  cursor: pointer;
-  display: inline-block;
+  --content-color: white;
+  background-color: var(--color);
+  border-radius: calc((var(--horizontal-padding) + var(--line-height)) / 2);
+  border: 2px solid var(--color);
+  color: var(--content-color);
   font-weight: bold;
-  min-width: 150px;
-  padding: 15px 30px;
+  min-width: 8em;
+  padding: calc(var(--horizontal-padding) / 2) var(--horizontal-padding);
   text-align: center;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color var(--transition-duration),
+    color var(--transition-duration);
 }
 .button:hover {
-  background-color: white;
-  color: #567d1c;
+  background-color: var(--content-color);
+  color: var(--color);
+}
+a.button {
+  display: inline-block;
 }
 a.button:hover {
   text-decoration: none;
+}
+button.button {
+  cursor: pointer;
+  line-height: inherit;
 }

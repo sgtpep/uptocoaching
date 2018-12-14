@@ -21,8 +21,8 @@
 }
 
 .education > ul > li {
-  margin-top: 10px;
-  padding-left: 40px;
+  --dot-size: 1.25em;
+  padding-left: calc(var(--dot-size) + 1em);
   position: relative;
   text-align: left;
 }
@@ -32,7 +32,7 @@
   }
 }
 .education > ul > li:not(:last-child) {
-  padding-bottom: 30px;
+  padding-bottom: var(--vertical-padding);
 }
 @media (min-width: 768px) {
   .education > ul > li:nth-child(even) {
@@ -41,7 +41,7 @@
   .education > ul > li:nth-child(odd) {
     clear: right;
     padding-left: 0;
-    padding-right: 40px;
+    padding-right: calc(var(--dot-size) + 1em);
     text-align: right;
   }
 }
@@ -51,32 +51,38 @@
   border-radius: 50%;
   border: 2px solid #fff;
   content: '';
-  height: 24px;
-  left: -12px;
+  height: var(--dot-size);
+  left: 0;
   position: absolute;
-  top: -5px;
-  width: 24px;
+  top: 0;
+  width: var(--dot-size);
 }
 @media (min-width: 768px) {
+  .education > ul > li:nth-child(even)::after {
+    left: calc(var(--dot-size) / -2);
+  }
   .education > ul > li:nth-child(odd)::after {
     left: auto;
-    right: -12px;
+    right: calc(var(--dot-size) / -2);
   }
 }
 
 .education > ul > li:not(:last-child)::before {
+  --width: 2px;
   background-color: #e0e0e0;
   bottom: 0;
   content: '';
-  left: -1px;
-  margin-bottom: -10px;
+  left: calc(var(--dot-size) / 2 - var(--width) / 2);
   position: absolute;
   top: 0;
-  width: 2px;
+  width: var(--width);
 }
 @media (min-width: 768px) {
+  .education > ul > li:nth-child(even)::before {
+    left: calc(var(--width) / -2);
+  }
   .education > ul > li:nth-child(odd)::before {
     left: auto;
-    right: -1px;
+    right: calc(var(--width) / -2);
   }
 }

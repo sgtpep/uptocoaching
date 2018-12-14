@@ -1,7 +1,7 @@
 .booking > h1 {
-  font-size: 25px;
-  padding-left: 15px;
-  padding-right: 15px;
+  font-size: var(--large-font-size);
+  padding-left: var(--horizontal-padding);
+  padding-right: var(--horizontal-padding);
   text-align: center;
 }
 
@@ -17,11 +17,11 @@ html.no-script .booking > iframe {
 }
 
 .booking > p {
-  font-size: 24px;
-  left: 15px;
+  font-size: var(--large-font-size);
+  left: var(--horizontal-padding);
   margin-top: 150px;
   position: absolute;
-  right: 15px;
+  right: var(--horizontal-padding);
   text-align: center;
 }
 html.no-script .booking > p {
@@ -29,7 +29,7 @@ html.no-script .booking > p {
 }
 
 .booking > noscript > p {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: var(--horizontal-padding);
+  padding-right: var(--horizontal-padding);
   text-align: center;
 }
