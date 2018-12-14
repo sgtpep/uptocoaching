@@ -32,12 +32,8 @@
   }
 }
 
-.header a:hover {
-  text-decoration: none;
-}
-
 @media (min-width: 768px) {
-  .header-container {
+  .header > div {
     display: table;
     height: 100%;
     width: 100%;
@@ -45,17 +41,21 @@
 }
 
 @media (min-width: 768px) {
-  .header-container > * {
+  .header > div > * {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
   }
 }
 @media (min-width: 980px) {
-  .header-container > :first-child,
-  .header-container > :last-child {
+  .header > div > :first-child,
+  .header > div > :last-child {
     width: 25%;
   }
+}
+
+.header a:hover {
+  text-decoration: none;
 }
 
 .header-languages {
