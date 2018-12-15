@@ -23,7 +23,7 @@ html.no-script .message {
   right: var(--button-offset);
   transition: background-color var(--transition-duration);
   width: var(--button-size);
-  z-index: 1000;
+  z-index: 1001;
 }
 .message.active > a {
   background-color: white;
