@@ -8,7 +8,7 @@
   max-width: var(--container-width);
 }
 
-.reviews > .button {
+.reviews .button {
   left: 50%;
   position: relative;
   transform: translateX(-50%);
