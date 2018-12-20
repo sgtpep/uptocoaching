@@ -1,7 +1,7 @@
 .button {
   --content-color: white;
   background-color: var(--color);
-  border-radius: calc((var(--horizontal-padding) + var(--line-height)) / 2);
+  border-radius: 1000px;
   border: 2px solid var(--color);
   color: var(--content-color);
   font-weight: bold;
