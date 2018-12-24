@@ -51,13 +51,12 @@ const main = () =>
     }
   });
 
-const meta = directory =>
-  Object.assign(
-    { title: title(directory) },
-    fs.existsSync(metaPath(directory))
-      ? JSON.parse(fs.readFileSync(metaPath(directory)))
-      : {},
-  );
+const meta = directory => ({
+  title: title(directory),
+  ...(fs.existsSync(metaPath(directory))
+    ? JSON.parse(fs.readFileSync(metaPath(directory)))
+    : {}),
+});
 
 const metaPath = directory => path.join(directory, 'meta.json');
 
