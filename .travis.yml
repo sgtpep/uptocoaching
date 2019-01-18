@@ -1,6 +1,6 @@
 before_deploy: |
   bash -eu -c '
-  rm -fr ./{.[!.]*,lib,node_modules,notes,package.json,scripts,styles,yarn.lock}
+  rm -fr ./{.[!.]*,lib,node_modules,notes,package-lock.json,package.json,scripts,styles}
   find -type f \( -executable -o -regex ".*/\(body\.html\|meta\.json\)" \) -delete
   sed "s/<base [^>]*/<base href=\//" ./404/index.html > ./404.html
   echo "www.uptocoaching.com" > ./CNAME
