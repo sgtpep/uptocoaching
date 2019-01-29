@@ -76,4 +76,4 @@ const title = directory =>
         .match(/<\s*h1(?:|\s.*?)>(.*?)<\s*\/\s*h1\s*>/is) || [])[1]
     : undefined;
 
-main();
+require.main === module && main();
