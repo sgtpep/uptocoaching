@@ -46,9 +46,8 @@ const directories = () =>
 const main = () =>
   directories().forEach(directory => {
     const html = build(directory);
-    if (html !== undefined) {
+    html === undefined ||
       fs.writeFileSync(path.join(directory, 'index.html'), html);
-    }
   });
 
 const meta = directory => ({

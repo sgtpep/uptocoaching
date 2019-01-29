@@ -143,38 +143,45 @@ const resolveStyle = node =>
 
 const testURL = url => /^(https?:|)\/\//.test(url) || url;
 
-const transformImage = (node, data) => {
-  node.attrs.src = `data:${filterMime(
+const transformImage = (node, data) =>
+  (node.attrs.src = `data:${filterMime(
     data.mime,
     data.from,
-  )};base64,${data.buffer.toString('base64')}`;
-};
+  )};base64,${data.buffer.toString('base64')}`);
 
 const transformInlineScript = (node, data) =>
-  processScript(node.content.join(''), data.from, output => {
-    node.content = output;
-  });
+  processScript(
+    node.content.join(''),
+    data.from,
+    output => (node.content = output),
+  );
 
 const transformInlineStyle = (node, data) =>
-  processStyle(node.content.join(''), data.from, output => {
-    node.content = output;
-  });
+  processStyle(
+    node.content.join(''),
+    data.from,
+    output => (node.content = output),
+  );
 
 const transformScript = (node, data) => {
   delete node.attrs.src;
   delete node.attrs.type;
-  return processScript(data.buffer.toString('utf8'), data.from, output => {
-    node.content = output;
-  });
+  return processScript(
+    data.buffer.toString('utf8'),
+    data.from,
+    output => (node.content = output),
+  );
 };
 
 const transformStyle = (node, data) => {
   delete node.attrs.href;
   delete node.attrs.rel;
   node.tag = 'style';
-  return processStyle(data.buffer.toString('utf8'), data.from, output => {
-    node.content = output;
-  });
+  return processStyle(
+    data.buffer.toString('utf8'),
+    data.from,
+    output => (node.content = output),
+  );
 };
 
 main();

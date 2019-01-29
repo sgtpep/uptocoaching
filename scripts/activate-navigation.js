@@ -19,9 +19,7 @@ const throttle = (callback, delay) => {
   return function(...args) {
     if (!throttling) {
       throttling = true;
-      setTimeout(() => {
-        throttling = false;
-      }, delay);
+      setTimeout(() => (throttling = false), delay);
       callback.apply(this, args);
     }
   };

@@ -12,6 +12,4 @@ decodeProperties();
 parallaxScrolling(document.querySelectorAll('.parallax'));
 
 const frame = document.querySelector('.booking > iframe');
-if (frame) {
-  youcanbookMe(frame);
-}
+frame && youcanbookMe(frame);
