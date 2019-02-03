@@ -1,11 +1,10 @@
 before_deploy: |
-  bash -eu -c '
+  set -eu
   rm -fr ./{.[!.]*,lib,node_modules,notes,package-lock.json,package.json,scripts,styles}
   find -type f \( -executable -o -regex ".*/\(body\.html\|meta\.json\)" \) -delete
   sed "s/<base [^>]*/<base href=\//" ./404/index.html > ./404.html
   echo "www.uptocoaching.com" > ./CNAME
   find -type f -name index.html -exec sed -i "s|%ABSOLUTE_BASE%|https://$(< ./CNAME)/|g" {} +
-  '
 language: node_js
 deploy:
   github_token:
