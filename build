@@ -60,7 +60,7 @@ const meta = directory => ({
 const metaPath = directory => path.join(directory, 'meta.json');
 
 const options = directory =>
-  (fs.existsSync('./lib/options.js')
+  (fs.existsSync('lib/options.js')
     ? require('./lib/options')
     : options => options)({
     base: path.relative(directory, __dirname) || '.',

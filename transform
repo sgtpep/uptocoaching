@@ -88,7 +88,7 @@ const processScript = (script, from, callback) => {
         input: from,
         plugins: [
           rollupBabel({
-            ignore: ['./node_modules'],
+            ignore: ['node_modules'],
             presets: [['@babel/env', { useBuiltIns: 'usage' }]],
           }),
           rollupCommonJS(),
