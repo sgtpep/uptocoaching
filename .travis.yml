@@ -15,4 +15,4 @@ deploy:
   provider: pages
   skip_cleanup: true
 node_js: node
-script: ./build && ./transform
+script: npm run build

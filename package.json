@@ -18,5 +18,8 @@
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^3.4.0",
     "uglify-js": "^3.4.9"
+  },
+  "scripts": {
+    "build": "./build && ./transform"
   }
 }
