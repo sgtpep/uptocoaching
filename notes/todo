@@ -1,0 +1,6 @@
+prettier
+eslint
+test: autoprefixer
+travis
+htmllint
+stylelint
