@@ -60,6 +60,13 @@ html:not(.script) .contacts {
   font-size: var(--font-size);
 }
 
+.contacts img {
+  margin-right: 0.5em;
+  margin-top: -0.25em;
+  vertical-align: middle;
+  width: 1.25em;
+}
+
 .contacts-thanks {
   background-color: #62c584;
   color: white;
