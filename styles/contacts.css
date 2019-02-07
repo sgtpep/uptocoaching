@@ -3,7 +3,7 @@
   margin-right: auto;
   max-width: var(--container-width);
 }
-html.no-script .contacts {
+html:not(.script) .contacts {
   display: none;
 }
 

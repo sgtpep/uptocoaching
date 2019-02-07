@@ -7,7 +7,7 @@
     display: none;
   }
 }
-html.no-script .message {
+html:not(.script) .message {
   display: none;
 }
 

@@ -12,7 +12,7 @@
   overflow: hidden;
   width: 100%;
 }
-html.no-script .booking > iframe {
+html:not(.script) .booking > iframe {
   display: none;
 }
 
@@ -24,7 +24,7 @@ html.no-script .booking > iframe {
   right: var(--horizontal-padding);
   text-align: center;
 }
-html.no-script .booking > p {
+html:not(.script) .booking > p {
   display: none;
 }
 

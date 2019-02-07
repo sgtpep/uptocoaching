@@ -107,7 +107,7 @@ ul.header-menu {
   display: inline-block;
   padding: var(--item-vertical-padding) var(--item-horizontal-padding);
 }
-html.no-script .header-menu > li.scripted {
+html:not(.script) .header-menu > li.scripted {
   display: none;
 }
 
