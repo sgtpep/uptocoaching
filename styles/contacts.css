@@ -44,6 +44,10 @@ html:not(.script) .contacts {
   }
 }
 
+.contacts > address > p:first-child {
+  margin-top: 0;
+}
+
 .contacts > p {
   font-size: var(--large-font-size);
   margin-left: auto;
