@@ -4,7 +4,7 @@ before_deploy: |
   find -type f \( -executable -o -regex \'.*/\(body\.html\|meta\.json\)\' \) -delete
   sed \'s/<base [^>]*/<base href=\//\' 404/index.html > 404.html
   echo \'www.uptocoaching.com\' > CNAME
-  find -type f -name index.html -exec sed -i \'s|%ABSOLUTE_BASE%|https://$(< CNAME)/|g\' {} +
+  find -type f -name index.html -exec sed -i "s|%ABSOLUTE_BASE%|https://$(< CNAME)/|g" {} +
   '
 language: node_js
 deploy:
