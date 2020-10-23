@@ -13,6 +13,7 @@
     "postcss-url": "^8.0.0",
     "posthtml": "^0.11.3",
     "posthtml-inline-assets": "^3.0.0",
+    "prettier": "2.1.2",
     "rollup": "^0.67.3",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.2.0",
